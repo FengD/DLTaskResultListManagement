@@ -65,16 +65,13 @@ function createMAPChart(gridApi) {
     cellRange: {
       columns: ['name', 'map'],
     },
-    aggFunc: 'count',
+    aggFunc: 'sum',
     chartThemeOverrides: {
       common: {
         title: {
           enabled: true,
-          text: 'Model Name and mAP',
-        },
-        legend: {
-          enabled: false
-        },
+          text: 'Model mAP',
+        }
       }
     },
     chartContainer: document.querySelector('#map-chart'),
@@ -87,16 +84,13 @@ function createNDSChart(gridApi) {
     cellRange: {
       columns: ['name', 'nds'],
     },
-    aggFunc: 'count',
+    aggFunc: 'sum',
     chartThemeOverrides: {
       common: {
         title: {
           enabled: true,
-          text: 'Model Name and NDS',
-        },
-        legend: {
-          enabled: false
-        },
+          text: 'Model NDS',
+        }
       }
     },
     chartContainer: document.querySelector('#nds-chart'),
@@ -109,16 +103,13 @@ function createFPSChart(gridApi) {
     cellRange: {
       columns: ['name', 'fps'],
     },
-    aggFunc: 'count',
+    aggFunc: 'sum',
     chartThemeOverrides: {
       common: {
         title: {
           enabled: true,
-          text: 'Model Name and FPS',
-        },
-        legend: {
-          enabled: false
-        },
+          text: 'Model FPS',
+        }
       }
     },
     chartContainer: document.querySelector('#fps-chart'),

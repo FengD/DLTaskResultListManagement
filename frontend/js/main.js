@@ -12,7 +12,7 @@ const gridOptions = {
           { field: 'maoe', columnGroupShow: 'open' },
           { field: 'mave', columnGroupShow: 'open' },
           { field: 'maae', columnGroupShow: 'open' },
-          { field: 'nds', columnGroupShow: 'open' },
+          { field: 'nds', columnGroupShow: 'closed' },
           { field: 'fps', columnGroupShow: 'closed' },
           { field: 'state_report_url', columnGroupShow: 'closed' },
         ]
@@ -54,42 +54,79 @@ const gridOptions = {
   };
   
   function onFirstDataRendered(params) {
-    createColumnChart(params.api);
+    createMAPChart(params.api);
+    createNDSChart(params.api);
+    createFPSChart(params.api);
   }
   
-  function createColumnChart(gridApi) {
-    gridApi.createCrossFilterChart({
-      chartType: 'line',
-      cellRange: {
-        columns: ['name', 'map'],
-      },
-      aggFunc: 'count',
-      chartThemeOverrides: {
-        common: {
-          title: {
-            enabled: true,
-            text: 'Model Name and mAP',
-          },
-          legend: {
-            enabled: false
-          },
+function createMAPChart(gridApi) {
+  gridApi.createCrossFilterChart({
+    chartType: 'line',
+    cellRange: {
+      columns: ['name', 'map'],
+    },
+    aggFunc: 'count',
+    chartThemeOverrides: {
+      common: {
+        title: {
+          enabled: true,
+          text: 'Model Name and mAP',
         },
-        cartesian: {
-          axes: {
-            category: {
-              label: {
-                rotation: 325,
-              },
-            },
-          },
+        legend: {
+          enabled: false
         },
-      },
-      chartContainer: document.querySelector('#barChart'),
-    });
-  }
-  
-  // setup the grid after the page has finished loading
-  document.addEventListener('DOMContentLoaded', function () {
-    var gridDiv = document.querySelector('#myGrid');
-    new agGrid.Grid(gridDiv, gridOptions);
+      }
+    },
+    chartContainer: document.querySelector('#map-chart'),
   });
+}
+
+function createNDSChart(gridApi) {
+  gridApi.createCrossFilterChart({
+    chartType: 'line',
+    cellRange: {
+      columns: ['name', 'nds'],
+    },
+    aggFunc: 'count',
+    chartThemeOverrides: {
+      common: {
+        title: {
+          enabled: true,
+          text: 'Model Name and NDS',
+        },
+        legend: {
+          enabled: false
+        },
+      }
+    },
+    chartContainer: document.querySelector('#nds-chart'),
+  });
+}
+
+function createFPSChart(gridApi) {
+  gridApi.createCrossFilterChart({
+    chartType: 'line',
+    cellRange: {
+      columns: ['name', 'fps'],
+    },
+    aggFunc: 'count',
+    chartThemeOverrides: {
+      common: {
+        title: {
+          enabled: true,
+          text: 'Model Name and FPS',
+        },
+        legend: {
+          enabled: false
+        },
+      }
+    },
+    chartContainer: document.querySelector('#fps-chart'),
+  });
+}
+  
+// setup the grid after the page has finished loading
+document.addEventListener('DOMContentLoaded', function () {
+  var gridDiv = document.querySelector('#myGrid');
+  new agGrid.Grid(gridDiv, gridOptions);
+});

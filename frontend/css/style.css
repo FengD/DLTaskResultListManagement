@@ -55,7 +55,13 @@ nav {
 .logo {
     padding-top: 20px;
 }
-
+#top {
+    flex: 1;
+    display: flex;
+}
+#map-chart, #nds-chart, #fps-chart {
+    width: 30%;
+}
 /* Modal */
 .modal {
     display: none;
@@ -251,4 +257,8 @@ svg {
 }
 nav a {
     text-decoration: none;
+}
+#map-chart, #nds-chart, #fps-chart {
+    flex: 1;
+    height: 25%;
 }

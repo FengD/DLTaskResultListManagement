@@ -12,7 +12,7 @@ const gridOptions = {
           { field: 'maoe', columnGroupShow: 'open' },
           { field: 'mave', columnGroupShow: 'open' },
           { field: 'maae', columnGroupShow: 'open' },
-          { field: 'nds', columnGroupShow: 'closed' },
+          { field: 'nds'},
           { field: 'fps', columnGroupShow: 'closed' },
           { field: 'state_report_url', columnGroupShow: 'closed' },
         ]

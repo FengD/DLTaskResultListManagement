@@ -5,10 +5,10 @@
 
 -- using when init
 
-DROP TABLE IF EXISTS crdc_airi_dictionary_modalities;
 DROP TABLE IF EXISTS crdc_airi_detection_task;
 DROP TABLE IF EXISTS crdc_airi_tracking_task;
 DROP TABLE IF EXISTS crdc_airi_segmentation_task;
+DROP TABLE IF EXISTS crdc_airi_dictionary_modalities;
 
 CREATE TABLE crdc_airi_dictionary_modalities(
   modalities_id serial NOT NULL PRIMARY KEY,
@@ -21,7 +21,7 @@ CREATE TABLE crdc_airi_dictionary_modalities(
 CREATE TABLE crdc_airi_detection_task(
   detection_task_id serial NOT NULL PRIMARY KEY,
   name varchar(256),
-  team varchar(256) DEFAULT "crdc_airi",
+  team varchar(256) DEFAULT 'crdc_airi',
   authors varchar(256),
   affiliation varchar(256),
   description varchar(1024),
@@ -47,13 +47,13 @@ CREATE TABLE crdc_airi_detection_task(
   nb_object_class integer DEFAULT 0,
   examination_time timestamp DEFAULT CURRENT_TIMESTAMP,
   create_time timestamp DEFAULT CURRENT_TIMESTAMP,
-  update_time timestamp DEFAULT CURRENT_TIMESTAMP,
+  update_time timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE crdc_airi_tracking_task(
   tracking_task_id serial NOT NULL PRIMARY KEY,
   name varchar(256),
-  team varchar(256) DEFAULT "crdc_airi",
+  team varchar(256) DEFAULT 'crdc_airi',
   authors varchar(256),
   affiliation varchar(256),
   description varchar(1024),
@@ -87,13 +87,13 @@ CREATE TABLE crdc_airi_tracking_task(
   nb_object_class integer DEFAULT 0,
   examination_time timestamp DEFAULT CURRENT_TIMESTAMP,
   create_time timestamp DEFAULT CURRENT_TIMESTAMP,
-  update_time timestamp DEFAULT CURRENT_TIMESTAMP,
+  update_time timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE crdc_airi_segmentation_task(
   segmentation_task_id serial NOT NULL PRIMARY KEY,
   name varchar(256),
-  team varchar(256) DEFAULT "crdc_airi",
+  team varchar(256) DEFAULT 'crdc_airi',
   authors varchar(256),
   affiliation varchar(256),
   description varchar(1024),
@@ -113,5 +113,5 @@ CREATE TABLE crdc_airi_segmentation_task(
   nb_object_class integer DEFAULT 0,
   examination_time timestamp DEFAULT CURRENT_TIMESTAMP,
   create_time timestamp DEFAULT CURRENT_TIMESTAMP,
-  update_time timestamp DEFAULT CURRENT_TIMESTAMP,
+  update_time timestamp DEFAULT CURRENT_TIMESTAMP
 );

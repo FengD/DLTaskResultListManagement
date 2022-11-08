@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>JavaScript example</title>
+		<meta charSet="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<style media="only screen">
+            html, body {
+                height: 100%;
+                width: 100%;
+                margin: 0;
+                box-sizing: border-box;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            html {
+                position: absolute;
+                top: 0;
+                left: 0;
+                padding: 0;
+                overflow: auto;
+            }
+
+            body {
+                padding: 1rem;
+                overflow: auto;
+            }
+        </style>
+		<link rel="stylesheet" href="style.css"/>
+	</head>
+	<body>
+        
+		<div id="wrapper">
+			<div class="header">
+				<a><img class="logo" src="logo.png"></a>
+				<span>HIRAIN-CRDC-AIRI</span>
+			</div> 
+			<div id="barChart" class="ag-theme-alpine-dark">
+			</div>
+			<!-- <div id="bubbleChart" class="ag-theme-alpine-dark">
+			</div> -->
+			<div id="myGrid" class="ag-theme-alpine-dark">
+			</div>
+		</div>
+		<script>var __basePath = './';</script>
+		<script src="ag-grid-enterprise.min.js">
+		</script>
+		<script src="data.js">
+		</script>
+		<script src="main.js">
+		</script>
+	</body>
+	<link rel="stylesheet" href="style.css"/>
+</html>

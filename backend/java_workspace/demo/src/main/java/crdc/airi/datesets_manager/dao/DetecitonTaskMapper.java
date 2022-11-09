@@ -26,22 +26,14 @@ public interface DetecitonTaskMapper {
 			String pico_results_url, String modalities, float map, float mate, float mase, float maoe, float mave,
 			float maae, float nds, float fps, String result_details_url, String state_report_url, int nb_object_class);
 
-	@Select("SELECT crdc_airi_detection_task.detection_task_id,crdc_airi_detection_task.name,crdc_airi_detection_task.authors,"
-			+ "crdc_airi_detection_task.description,crdc_airi_detection_task.test_dataset_url,"
-			+ "crdc_airi_detection_task.model_files_url,crdc_airi_detection_task.pico_results_url,"
-			+ "crdc_airi_detection_task.modalities,crdc_airi_detection_task.map,crdc_airi_detection_task.mate,"
-			+ "crdc_airi_detection_task.mase,crdc_airi_detection_task.maoe,crdc_airi_detection_task.mave,"
-			+ "crdc_airi_detection_task.maae,crdc_airi_detection_task.nds,crdc_airi_detection_task.fps,"
-			+ "crdc_airi_detection_task.result_details_url,crdc_airi_detection_task.state_report_url,"
-			+ "crdc_airi_detection_task.nb_object_class,crdc_airi_detection_task.create_time,"
-			+ "crdc_airi_detection_task.update_time"
-			+ " FROM crdc_airi_detection_task WHERE detection_task_id=#{id,jdbcType=INTEGER}")
+	@Select("SELECT * FROM crdc_airi_detection_task WHERE detection_task_id=#{id,jdbcType=INTEGER}")
 	DetectionTask selectById(int id);
 
 	@Select("SELECT * FROM crdc_airi_detection_task WHERE name=#{name,jdbcType=VARCHAR}")
-	DetectionTask selectByName(String name);
+	List<DetectionTask> selectByName(String name);
 
 	@Select("SELECT * FROM crdc_airi_detection_task ORDER BY detection_task_id ASC")
+
 	List<DetectionTask> selectAll();
 
 	@Delete("delete from crdc_airi_detection_task where detection_task_id=#{id,jdbcType=INTEGER}")

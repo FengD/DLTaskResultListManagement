@@ -22,7 +22,7 @@ public class DetectionTaskService {
 				nb_object_class);
 	}
 
-	public DetectionTask selectByName(String name) throws Exception {
+	public List<DetectionTask> selectByName(String name) throws Exception {
 		return mapper.selectByName(name);
 	}
 

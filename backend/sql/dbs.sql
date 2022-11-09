@@ -8,15 +8,6 @@
 DROP TABLE IF EXISTS crdc_airi_detection_task;
 DROP TABLE IF EXISTS crdc_airi_tracking_task;
 DROP TABLE IF EXISTS crdc_airi_segmentation_task;
-DROP TABLE IF EXISTS crdc_airi_dictionary_modalities;
-
-CREATE TABLE crdc_airi_dictionary_modalities(
-  modalities_id serial NOT NULL PRIMARY KEY,
-  name varchar(256),
-  description varchar(256),
-  create_time timestamp DEFAULT CURRENT_TIMESTAMP,
-  update_time timestamp DEFAULT CURRENT_TIMESTAMP
-);
 
 CREATE TABLE crdc_airi_detection_task(
   detection_task_id serial NOT NULL PRIMARY KEY,
@@ -25,12 +16,13 @@ CREATE TABLE crdc_airi_detection_task(
   authors varchar(256),
   affiliation varchar(256),
   description varchar(1024),
+  project_name varchar(512),
   project_url varchar(512),
   paper_url varchar(512),
   test_dataset_url varchar(512),
   model_files_url varchar(512),
   pico_results_url varchar(512),
-  modalities_id integer REFERENCES crdc_airi_dictionary_modalities(modalities_id),
+  modalities varchar(512),
   picture_link_url varchar(512),
   map float DEFAULT 0,
   mate float DEFAULT 0,
@@ -58,11 +50,12 @@ CREATE TABLE crdc_airi_tracking_task(
   affiliation varchar(256),
   description varchar(1024),
   project_url varchar(512),
+  project_name varchar(512),
   paper_url varchar(512),
   test_dataset_url varchar(512),
   model_files_url varchar(512),
   pico_results_url varchar(512),
-  modalities_id integer REFERENCES crdc_airi_dictionary_modalities(modalities_id),
+  modalities varchar(512),
   picture_link_url varchar(512),
   amota float DEFAULT 0,
   amotp float DEFAULT 0,
@@ -98,11 +91,12 @@ CREATE TABLE crdc_airi_segmentation_task(
   affiliation varchar(256),
   description varchar(1024),
   project_url varchar(512),
+  project_name varchar(512),
   paper_url varchar(512),
   test_dataset_url varchar(512),
   model_files_url varchar(512),
   pico_results_url varchar(512),
-  modalities_id integer REFERENCES crdc_airi_dictionary_modalities(modalities_id),
+  modalities varchar(512),
   picture_link_url varchar(512),
   miou float DEFAULT 0,
   macc float DEFAULT 0,

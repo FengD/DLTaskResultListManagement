@@ -3,18 +3,19 @@ const gridOptions = {
       {
         headerName: 'Basic Infomation',
         children: [
-          { headerName: 'Date', field: 'create_time', chartDataType: 'category'},
-          { field: 'name', chartDataType: 'category'},
-          { field: 'modalities', chartDataType: 'category'},
-          { field: 'map', chartDataType: 'series', columnGroupShow: 'closed' },
-          { field: 'mate', columnGroupShow: 'open' },
-          { field: 'mase', columnGroupShow: 'open' },
-          { field: 'maoe', columnGroupShow: 'open' },
-          { field: 'mave', columnGroupShow: 'open' },
-          { field: 'maae', columnGroupShow: 'open' },
-          { field: 'nds'},
-          { field: 'fps', columnGroupShow: 'closed' },
-          { field: 'state_report_url', columnGroupShow: 'closed',
+          { headerName: 'DATE', field: 'create_time', chartDataType: 'category'},
+          { headerName: 'NAME', field: 'name', chartDataType: 'category'},
+          { headerName: 'MODALITIES', field: 'modalities', chartDataType: 'category'},
+          { headerName: 'PROJECT_NAME', field: 'project_name', chartDataType: 'category'},
+          { headerName: 'mAP', field: 'map', chartDataType: 'series', columnGroupShow: 'closed' },
+          { headerName: 'mATE', field: 'mate', columnGroupShow: 'open' },
+          { headerName: 'mASE', field: 'mase', columnGroupShow: 'open' },
+          { headerName: 'mAOE', field: 'maoe', columnGroupShow: 'open' },
+          { headerName: 'mAVE', field: 'mave', columnGroupShow: 'open' },
+          { headerName: 'mAAE', field: 'maae', columnGroupShow: 'open' },
+          { headerName: 'NDS', field: 'nds'},
+          { headerName: 'FPS', field: 'fps', columnGroupShow: 'closed' },
+          { headerName: 'STATE', field: 'state_report_url', columnGroupShow: 'closed',
             cellRenderer: function(params) {
               return '<a href=' + params.value + '>'+ params.value+'</a>'
             }
@@ -24,21 +25,36 @@ const gridOptions = {
       {
         headerName: 'Link Information',
         children : [
-          { field: 'test_dataset_url', columnGroupShow: 'open'},
-          { field: 'model_files_url', columnGroupShow: 'closed'},
-          { field: 'pico_results_url', columnGroupShow: 'open'},
-          { field: 'picture_link_url', columnGroupShow: 'open'}
+          { headerName: 'Dateset', field: 'test_dataset_url',
+          cellRenderer: function(params) {
+            return '<a href=' + params.value + '>'+ params.value+'</a>'
+          }},
+          { headerName: 'Model', field: 'model_files_url', columnGroupShow: 'closed',
+          cellRenderer: function(params) {
+            return '<a href=' + params.value + '>'+ params.value+'</a>'
+          }},
+          { headerName: 'Pico', field: 'pico_results_url', columnGroupShow: 'open',
+          cellRenderer: function(params) {
+            return '<a href=' + params.value + '>'+ params.value+'</a>'
+          }},
+          // { headerName: 'Date', field: 'picture_link_url', columnGroupShow: 'open'}
         ]
       },
       {
         headerName: 'Details Information',
         children : [
           { headerName: 'Team', field: 'team', columnGroupShow: 'open'},
-          { field: 'authors', columnGroupShow: 'closed'},
-          { field: 'affilication', columnGroupShow: 'open' },
-          { field: 'description', columnGroupShow: 'open'},
-          { field: 'project_url', columnGroupShow: 'open' },
-          { field: 'paper_url', columnGroupShow: 'open'}
+          { headerName: 'Authors', field: 'authors', columnGroupShow: 'closed'},
+          { headerName: 'Affilication', field: 'affilication', columnGroupShow: 'open' },
+          { headerName: 'Description', field: 'description', columnGroupShow: 'open'},
+          { headerName: 'Project', field: 'project_url', columnGroupShow: 'open' ,
+          cellRenderer: function(params) {
+            return '<a href=' + params.value + '>'+ params.value+'</a>'
+          }},
+          { headerName: 'Paper', field: 'paper_url', columnGroupShow: 'open',
+          cellRenderer: function(params) {
+            return '<a href=' + params.value + '>'+ params.value+'</a>'
+          }}
         ]
       }
       

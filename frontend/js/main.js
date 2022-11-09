@@ -6,27 +6,14 @@ const gridOptions = {
           { headerName: 'DATE', field: 'create_time', chartDataType: 'category'},
           { headerName: 'NAME', field: 'name', chartDataType: 'category'},
           { headerName: 'MODALITIES', field: 'modalities', chartDataType: 'category'},
-          { headerName: 'PROJECT_NAME', field: 'project_name', chartDataType: 'category'},
-          { headerName: 'mAP', field: 'map', chartDataType: 'series', columnGroupShow: 'closed' ,
-          icons: {
-            sortAscending: '<i class="fa fa-sort-alpha-up"/>',
-            sortDescending: '<i class="fa fa-sort-alpha-down"/>',
-          },},
+          { headerName: 'mAP', field: 'map', chartDataType: 'series', columnGroupShow: 'closed'},
           { headerName: 'mATE', field: 'mate', columnGroupShow: 'open' },
           { headerName: 'mASE', field: 'mase', columnGroupShow: 'open' },
           { headerName: 'mAOE', field: 'maoe', columnGroupShow: 'open' },
           { headerName: 'mAVE', field: 'mave', columnGroupShow: 'open' },
           { headerName: 'mAAE', field: 'maae', columnGroupShow: 'open' },
-          { headerName: 'NDS', field: 'nds',
-          icons: {
-            sortAscending: '<i class="fa fa-sort-alpha-up"/>',
-            sortDescending: '<i class="fa fa-sort-alpha-down"/>',
-          },},
-          { headerName: 'FPS', field: 'fps', columnGroupShow: 'closed',
-          icons: {
-            sortAscending: '<i class="fa fa-sort-alpha-up"/>',
-            sortDescending: '<i class="fa fa-sort-alpha-down"/>',
-          }, },
+          { headerName: 'NDS', field: 'nds'},
+          { headerName: 'FPS', field: 'fps', columnGroupShow: 'closed'},
           { headerName: 'STATE', field: 'state_report_url', columnGroupShow: 'closed',
             cellRenderer: function(params) {
               return '<a href=' + params.value + '><i class="fa fa-chart-simple"></i></a>'
@@ -48,25 +35,14 @@ const gridOptions = {
           { headerName: 'Pico', field: 'pico_results_url', columnGroupShow: 'open',
           cellRenderer: function(params) {
             return '<a href=' + params.value + '><i class="fa fa-database"></i></a>'
-          }},
-          // { headerName: 'Date', field: 'picture_link_url', columnGroupShow: 'open'}
+          }}
         ]
       },
       {
         headerName: 'Details Information',
         children : [
-          { headerName: 'Team', field: 'team', columnGroupShow: 'open'},
           { headerName: 'Authors', field: 'authors', columnGroupShow: 'closed'},
-          { headerName: 'Affilication', field: 'affilication', columnGroupShow: 'open' },
-          { headerName: 'Description', field: 'description', columnGroupShow: 'open'},
-          { headerName: 'Project', field: 'project_url', columnGroupShow: 'open' ,
-          cellRenderer: function(params) {
-            return '<a href=' + params.value + '><i class="fa fa-diagram-project"></i></a>'
-          }},
-          { headerName: 'Paper', field: 'paper_url', columnGroupShow: 'open',
-          cellRenderer: function(params) {
-            return '<a href=' + params.value + '><i class="fa fa-paper-plane"></i></a>'
-          }}
+          { headerName: 'Description', field: 'description', columnGroupShow: 'open'}
         ]
       }
       

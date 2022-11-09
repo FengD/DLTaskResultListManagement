@@ -6,22 +6,21 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import crdc.airi.datesets_manager.service.CameraTypeService;
+import crdc.airi.datesets_manager.service.DetectionTaskService;
 import crdc.airi.datesets_manager.utils.Response;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("CameraType")
-public class CameraTypeController {
+@RequestMapping("DetectionTask")
+public class DetectionTaskController {
 	@Autowired
-	private CameraTypeService service;
+	private DetectionTaskService service;
 
 	@GetMapping("id/{id}")
-	@ApiOperation(value = "CameraType", notes = "get CameraType by id")
+	@ApiOperation(value = "DetectionTask", notes = "get DetectionTask by id")
 	public Object getById(@PathVariable int id) {
 		Response response;
 		try {
@@ -34,7 +33,7 @@ public class CameraTypeController {
 	}
 
 	@GetMapping("name/{name}")
-	@ApiOperation(value = "CameraType", notes = "get CameraType by name")
+	@ApiOperation(value = "DetectionTask", notes = "get DetectionTask by name")
 	public Object getByName(@PathVariable String name) {
 		Response response;
 		try {
@@ -47,7 +46,7 @@ public class CameraTypeController {
 	}
 
 	@GetMapping("")
-	@ApiOperation(value = "CameraType", notes = "get all CameraType")
+	@ApiOperation(value = "DetectionTask", notes = "get all DetectionTask")
 	public Object getAll() {
 		Response response;
 		try {
@@ -60,11 +59,16 @@ public class CameraTypeController {
 	}
 
 	@PostMapping("")
-	@ApiOperation(value = "CameraType", notes = "insert CameraType")
-	public Object insert(String name, String description) {
+	@ApiOperation(value = "DetectionTask", notes = "insert DetectionTask")
+	public Object insert(String name, String authors, String description, String test_dataset_url,
+			String model_files_url, String pico_results_url, String modalities, float map, float mate, float mase,
+			float maoe, float mave, float maae, float nds, float fps, String result_details_url,
+			String state_report_url, int nb_object_class) {
 		Response response;
 		try {
-			response = new Response(service.insert(name, description), HttpStatus.OK);
+			response = new Response(service.insert(name, authors, description, test_dataset_url, model_files_url,
+					pico_results_url, modalities, map, mate, mase, maoe, mave, maae, nds, fps, result_details_url,
+					state_report_url, nb_object_class), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			response = new Response(null, HttpStatus.FOUND);
@@ -73,7 +77,7 @@ public class CameraTypeController {
 	}
 
 	@DeleteMapping("{id}")
-	@ApiOperation(value = "CameraType", notes = "delete CameraType by id")
+	@ApiOperation(value = "DetectionTask", notes = "delete DetectionTask by id")
 	public Object delete(@PathVariable int id) {
 		Response response;
 		try {
@@ -84,18 +88,4 @@ public class CameraTypeController {
 		}
 		return response.getResponse();
 	}
-	
-	@PutMapping("{id}")
-	@ApiOperation(value = "CameraType", notes = "update CameraType by id")
-	public Object update(@PathVariable int id, String name, String description) {
-		Response response;
-		try {
-			response = new Response(service.updateById(id, name, description), HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			response = new Response(null, HttpStatus.NOT_FOUND);
-		}
-		return response.getResponse();
-	}
-
 }

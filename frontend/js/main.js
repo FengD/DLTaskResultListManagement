@@ -14,7 +14,11 @@ const gridOptions = {
           { field: 'maae', columnGroupShow: 'open' },
           { field: 'nds'},
           { field: 'fps', columnGroupShow: 'closed' },
-          { field: 'state_report_url', columnGroupShow: 'closed' },
+          { field: 'state_report_url', columnGroupShow: 'closed',
+            cellRenderer: function(params) {
+              return '<a href=' + params.value + '>'+ params.value+'</a>'
+            }
+          },
         ]
       },
       {

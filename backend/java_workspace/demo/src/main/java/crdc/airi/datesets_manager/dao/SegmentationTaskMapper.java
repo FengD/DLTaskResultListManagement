@@ -32,7 +32,6 @@ public interface SegmentationTaskMapper {
 	List<SegmentationTask> selectByName(String name);
 
 	@Select("SELECT * FROM crdc_airi_segmentation_task ORDER BY segmentation_task_id ASC")
-
 	List<SegmentationTask> selectAll();
 
 	@Delete("delete from crdc_airi_segmentation_task where segmentation_task_id=#{id,jdbcType=INTEGER}")

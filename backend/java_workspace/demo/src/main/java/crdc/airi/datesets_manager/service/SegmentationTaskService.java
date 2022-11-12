@@ -21,6 +21,7 @@ public class SegmentationTaskService {
 	}
 
 	public List<SegmentationTask> selectByName(String name) throws Exception {
+
 		return mapper.selectByName(name);
 	}
 

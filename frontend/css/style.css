@@ -135,7 +135,7 @@ nav {
 .btn:hover, .btn:hover > a {
     color: white;
 }
-#detectionGrid {
+#detectionGrid, #segmentationGrid, #trackingGrid {
     width: 100%;
 }
 @media only screen and (max-width: 600px) {
@@ -151,7 +151,7 @@ nav {
     #main {
         display: none;
     }
-    #detectionGrid {
+    #detectionGrid, #segmentationGrid, #trackingGrid  {
         height: calc(100vh - 50px - 5px);
     }
 }
@@ -159,7 +159,7 @@ nav {
     #main {
         display: flex;
     }
-    #detectionGrid {
+    #detectionGrid, #segmentationGrid, #trackingGrid  {
         height: calc(100vh - 420px - 50px - 5px);
     }
 }

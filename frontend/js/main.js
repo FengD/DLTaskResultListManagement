@@ -78,11 +78,11 @@ const segmentationOptions = {
         { headerName: 'DATE', field: 'create_time', chartDataType: 'category'},
         { headerName: 'NAME', field: 'name', chartDataType: 'category'},
         { headerName: 'MODALITIES', field: 'modalities', chartDataType: 'category'},
-        { headerName: 'mIOU', field: 'miou', chartDataType: 'series', columnGroupShow: 'closed'},
-        { headerName: 'mACC', field: 'macc', columnGroupShow: 'open' },
-        { headerName: 'mBoundary', field: 'mboundary', columnGroupShow: 'open' },
-        { headerName: 'FPS', field: 'fps', columnGroupShow: 'closed'},
-        { headerName: 'STATE', field: 'state_report_url', columnGroupShow: 'closed',
+        { headerName: 'mIOU', field: 'miou'},
+        { headerName: 'mACC', field: 'macc'},
+        { headerName: 'mBoundary', field: 'mboundary'},
+        { headerName: 'FPS', field: 'fps'},
+        { headerName: 'STATE', field: 'state_report_url',
           cellRenderer: function(params) {
             return '<a href=' + params.value + '><i class="fa fa-chart-simple"></i></a>'
           }
@@ -146,12 +146,12 @@ const trackingOptions = {
         { headerName: 'DATE', field: 'create_time', chartDataType: 'category'},
         { headerName: 'NAME', field: 'name', chartDataType: 'category'},
         { headerName: 'MODALITIES', field: 'modalities', chartDataType: 'category'},
-        { headerName: 'AMOTA', field: 'amota', chartDataType: 'series', columnGroupShow: 'closed'},
-        { headerName: 'AMOTP', field: 'amotp', columnGroupShow: 'closed' },
-        { headerName: 'MOTAR', field: 'motar', columnGroupShow: 'closed' },
-        { headerName: 'MOTA', field: 'mota', columnGroupShow: 'open' },
-        { headerName: 'MOTP', field: 'motp', columnGroupShow: 'open' },
-        { headerName: 'STATE', field: 'state_report_url', columnGroupShow: 'closed',
+        { headerName: 'MOTA', field: 'mota'},
+        { headerName: 'MOTP', field: 'motp'},
+        { headerName: 'AMOTA', field: 'amota', columnGroupShow: 'open'},
+        { headerName: 'AMOTP', field: 'amotp', columnGroupShow: 'open'},
+        { headerName: 'MOTAR', field: 'motar', columnGroupShow: 'open'},
+        { headerName: 'STATE', field: 'state_report_url',
           cellRenderer: function(params) {
             return '<a href=' + params.value + '><i class="fa fa-chart-simple"></i></a>'
           }
@@ -342,14 +342,19 @@ function createMOTPChart(gridApi) {
 document.addEventListener('DOMContentLoaded', function () {
   var detectionGrid = document.querySelector('#detectionGrid');
   if (detectionGrid != null) {
+    console.log(1)
+
     new agGrid.Grid(detectionGrid, detectionOptions);
   }
   var segmentationGrid = document.querySelector('#segmentationGrid');
   if (segmentationGrid != null) {
+    console.log(2)
     new agGrid.Grid(segmentationGrid, segmentationOptions);
   }
   var trackingGrid = document.querySelector('#trackingGrid');
   if (trackingGrid != null) {
+    console.log(3)
+
     new agGrid.Grid(trackingGrid, trackingOptions);
   }
 });

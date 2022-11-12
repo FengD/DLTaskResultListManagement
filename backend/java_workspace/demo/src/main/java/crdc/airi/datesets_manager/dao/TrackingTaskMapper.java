@@ -32,7 +32,6 @@ public interface TrackingTaskMapper {
 	List<TrackingTask> selectByName(String name);
 
 	@Select("SELECT * FROM crdc_airi_tracking_task ORDER BY tracking_task_id ASC")
-
 	List<TrackingTask> selectAll();
 
 	@Delete("delete from crdc_airi_tracking_task where tracking_task_id=#{id,jdbcType=INTEGER}")

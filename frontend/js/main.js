@@ -55,7 +55,7 @@ const gridOptions = {
       floatingFilter: true,
       resizable: true,
     },
-    rowData: getData(),
+    rowData: getDetectionTaskData(),
     enableCharts: true,
     chartThemes: ['ag-default-dark'],
     onFirstDataRendered: onFirstDataRendered,

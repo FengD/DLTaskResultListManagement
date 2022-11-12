@@ -47,20 +47,24 @@ nav {
     justify-content: end;
 }
 .header {
-    height:100px;
+    height:50px;
     color: #fff000;
-    font-size: 28px;
+    font-size: 20px;
     font-weight: bold;
 }
 .logo {
-    padding-top: 20px;
+    padding-top: 15px;
+    height: 30px;
 }
 #top {
     flex: 1;
     display: flex;
 }
-#map-chart, #nds-chart, #fps-chart {
+#map-chart, #nds-chart, #fps-chart, #miou-chart, #macc-chart {
     width: 30%;
+}
+#mota-chart, #motp-chart {
+    width: 45%;
 }
 /* Modal */
 .modal {
@@ -131,7 +135,7 @@ nav {
 .btn:hover, .btn:hover > a {
     color: white;
 }
-#myGrid {
+#detectionGrid {
     width: 100%;
 }
 @media only screen and (max-width: 600px) {
@@ -147,7 +151,7 @@ nav {
     #main {
         display: none;
     }
-    #myGrid {
+    #detectionGrid {
         height: calc(100vh - 50px - 5px);
     }
 }
@@ -155,7 +159,7 @@ nav {
     #main {
         display: flex;
     }
-    #myGrid {
+    #detectionGrid {
         height: calc(100vh - 420px - 50px - 5px);
     }
 }

@@ -61,10 +61,10 @@ nav {
     display: flex;
 }
 #map-chart, #nds-chart, #fps-chart, #miou-chart, #macc-chart {
-    width: 30%;
+    width: 33%;
 }
 #mota-chart, #motp-chart {
-    width: 45%;
+    width: 49%;
 }
 /* Modal */
 .modal {

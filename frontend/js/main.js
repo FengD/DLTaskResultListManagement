@@ -26,11 +26,11 @@ const detectionOptions = {
         children : [
           { headerName: 'Dateset', field: 'test_dataset_url',
           cellRenderer: function(params) {
-            return '<a href=' + params.value + '><i class="fa fa-database"></i></a>'
+            return '<a href=' + params.value + '><i class="fa fa-database"></i>' + params.value + '</a>'
           }},
           { headerName: 'Model', field: 'model_files_url', columnGroupShow: 'closed',
           cellRenderer: function(params) {
-            return '<a href=' + params.value + '><i class="fa fa-database"></i></a>'
+            return '<a href=' + params.value + '><i class="fa fa-database"></i>' + params.value + '</a>'
           }},
           { headerName: 'Pico', field: 'pico_results_url', columnGroupShow: 'open',
           cellRenderer: function(params) {
@@ -39,7 +39,8 @@ const detectionOptions = {
           { headerName: 'Details', field: 'result_details_url', columnGroupShow: 'open',
           cellRenderer: function(params) {
             return '<a href=' + params.value + '><i class="fa fa-database"></i></a>'
-          }}
+          }},
+          { headerName: 'Class', field: 'nb_object_class', columnGroupShow: 'open'}
         ]
       },
       {
@@ -63,7 +64,6 @@ const detectionOptions = {
     enableCharts: true,
     chartThemes: ['ag-default-dark'],
     onFirstDataRendered: function(params) {
-      console.log(params);
       createMAPChart(params.api);
       createNDSChart(params.api);
       createFPSChart(params.api);
@@ -94,11 +94,11 @@ const segmentationOptions = {
       children : [
         { headerName: 'Dateset', field: 'test_dataset_url',
         cellRenderer: function(params) {
-          return '<a href=' + params.value + '><i class="fa fa-database"></i></a>'
+          return '<a href=' + params.value + '><i class="fa fa-database"></i>' + params.value + '</a>'
         }},
         { headerName: 'Model', field: 'model_files_url', columnGroupShow: 'closed',
         cellRenderer: function(params) {
-          return '<a href=' + params.value + '><i class="fa fa-database"></i></a>'
+          return '<a href=' + params.value + '><i class="fa fa-database"></i>' + params.value + '</a>'
         }},
         { headerName: 'Pico', field: 'pico_results_url', columnGroupShow: 'open',
         cellRenderer: function(params) {
@@ -107,7 +107,8 @@ const segmentationOptions = {
         { headerName: 'Details', field: 'result_details_url', columnGroupShow: 'open',
         cellRenderer: function(params) {
           return '<a href=' + params.value + '><i class="fa fa-database"></i></a>'
-        }}
+        }},
+        { headerName: 'Class', field: 'nb_object_class', columnGroupShow: 'open'}
       ]
     },
     {
@@ -131,7 +132,6 @@ const segmentationOptions = {
   enableCharts: true,
   chartThemes: ['ag-default-dark'],
   onFirstDataRendered: function(params) {
-    console.log(params);
     createMIOUChart(params.api);
     createMACCChart(params.api);
     createFPSChart(params.api);
@@ -163,11 +163,11 @@ const trackingOptions = {
       children : [
         { headerName: 'Dateset', field: 'test_dataset_url',
         cellRenderer: function(params) {
-          return '<a href=' + params.value + '><i class="fa fa-database"></i></a>'
+          return '<a href=' + params.value + '><i class="fa fa-database"></i>' + params.value + '</a>'
         }},
         { headerName: 'Model', field: 'model_files_url', columnGroupShow: 'closed',
         cellRenderer: function(params) {
-          return '<a href=' + params.value + '><i class="fa fa-database"></i></a>'
+          return '<a href=' + params.value + '><i class="fa fa-database"></i>' + params.value + '</a>'
         }},
         { headerName: 'Pico', field: 'pico_results_url', columnGroupShow: 'open',
         cellRenderer: function(params) {
@@ -176,7 +176,8 @@ const trackingOptions = {
         { headerName: 'Details', field: 'result_details_url', columnGroupShow: 'open',
         cellRenderer: function(params) {
           return '<a href=' + params.value + '><i class="fa fa-database"></i></a>'
-        }}
+        }},
+        { headerName: 'Class', field: 'nb_object_class', columnGroupShow: 'open'}
       ]
     },
     {

@@ -48,7 +48,7 @@ nav {
 }
 .header {
     height:50px;
-    color: #fff000;
+    color: #004098;
     font-size: 20px;
     font-weight: bold;
 }
@@ -62,9 +62,13 @@ nav {
 }
 #map-chart, #nds-chart, #fps-chart, #miou-chart, #macc-chart {
     width: 33%;
+    flex: 1;
+    height: 25%;
 }
 #mota-chart, #motp-chart {
     width: 49%;
+    flex: 1;
+    height: 25%;
 }
 /* Modal */
 .modal {
@@ -261,8 +265,4 @@ svg {
 }
 nav a {
     text-decoration: none;
-}
-#map-chart, #nds-chart, #fps-chart {
-    flex: 1;
-    height: 25%;
 }

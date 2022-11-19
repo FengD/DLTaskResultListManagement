@@ -47,7 +47,7 @@ const detectionOptions = {
         headerName: 'Details Information',
         children : [
           { headerName: 'Authors', field: 'authors', columnGroupShow: 'closed'},
-          { headerName: 'Description', field: 'description', columnGroupShow: 'open'}
+          { headerName: 'Description', field: 'description', columnGroupShow: 'open',singleClickEdit: true}
         ]
       }
       

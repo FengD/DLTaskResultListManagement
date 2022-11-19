@@ -27,13 +27,13 @@ public interface DetecitonTaskMapper {
 			String pico_results_url, String modalities, float map, float mate, float mase, float maoe, float mave,
 			float maae, float nds, float fps, String result_details_url, String state_report_url, int nb_object_class);
 
-	@Select("SELECT * FROM crdc_airi_detection_task WHERE detection_task_id=#{id,jdbcType=INTEGER}")
+	@Select("SELECT detection_task_id as id, * FROM crdc_airi_detection_task WHERE detection_task_id=#{id,jdbcType=INTEGER}")
 	DetectionTask selectById(int id);
 
-	@Select("SELECT * FROM crdc_airi_detection_task WHERE name=#{name,jdbcType=VARCHAR}")
+	@Select("SELECT detection_task_id as id, * FROM crdc_airi_detection_task WHERE name=#{name,jdbcType=VARCHAR}")
 	List<DetectionTask> selectByName(String name);
 
-	@Select("SELECT * FROM crdc_airi_detection_task ORDER BY detection_task_id ASC")
+	@Select("SELECT detection_task_id as id, * FROM crdc_airi_detection_task ORDER BY detection_task_id ASC")
 	List<DetectionTask> selectAll();
 
 	@Update("Update crdc_airi_detection_task set description=#{description,jdbcType=VARCHAR} where"

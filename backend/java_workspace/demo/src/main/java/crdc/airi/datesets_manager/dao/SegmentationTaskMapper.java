@@ -26,13 +26,13 @@ public interface SegmentationTaskMapper {
 			String pico_results_url, String modalities, float miou, float macc, float mboundary, float fps,
 			String result_details_url, String state_report_url, int nb_object_class);
 
-	@Select("SELECT * FROM crdc_airi_segmentation_task WHERE segmentation_task_id=#{id,jdbcType=INTEGER}")
+	@Select("SELECT segmentation_task_id as id, * FROM crdc_airi_segmentation_task WHERE segmentation_task_id=#{id,jdbcType=INTEGER}")
 	SegmentationTask selectById(int id);
 
-	@Select("SELECT * FROM crdc_airi_segmentation_task WHERE name=#{name,jdbcType=VARCHAR}")
+	@Select("SELECT segmentation_task_id as id, * FROM crdc_airi_segmentation_task WHERE name=#{name,jdbcType=VARCHAR}")
 	List<SegmentationTask> selectByName(String name);
 
-	@Select("SELECT * FROM crdc_airi_segmentation_task ORDER BY segmentation_task_id ASC")
+	@Select("SELECT segmentation_task_id as id, * FROM crdc_airi_segmentation_task ORDER BY segmentation_task_id ASC")
 	List<SegmentationTask> selectAll();
 	
 	@Update("Update crdc_airi_segmentation_task set description=#{description,jdbcType=VARCHAR} where"

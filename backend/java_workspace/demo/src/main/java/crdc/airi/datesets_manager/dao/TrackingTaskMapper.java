@@ -26,13 +26,13 @@ public interface TrackingTaskMapper {
 			String pico_results_url, String modalities, float amota, float amotp, float motar, float mota, float motp,
 			String result_details_url, String state_report_url, int nb_object_class);
 
-	@Select("SELECT * FROM crdc_airi_tracking_task WHERE tracking_task_id=#{id,jdbcType=INTEGER}")
+	@Select("SELECT tracking_task_id as id, * FROM crdc_airi_tracking_task WHERE tracking_task_id=#{id,jdbcType=INTEGER}")
 	TrackingTask selectById(int id);
 
-	@Select("SELECT * FROM crdc_airi_tracking_task WHERE name=#{name,jdbcType=VARCHAR}")
+	@Select("SELECT tracking_task_id as id, * FROM crdc_airi_tracking_task WHERE name=#{name,jdbcType=VARCHAR}")
 	List<TrackingTask> selectByName(String name);
 
-	@Select("SELECT * FROM crdc_airi_tracking_task ORDER BY tracking_task_id ASC")
+	@Select("SELECT tracking_task_id as id, * FROM crdc_airi_tracking_task ORDER BY tracking_task_id ASC")
 	List<TrackingTask> selectAll();
 
 	@Update("Update crdc_airi_tracking_task set description=#{description,jdbcType=VARCHAR} where"

@@ -32,6 +32,10 @@ public class SegmentationTaskService {
 	public List<SegmentationTask> selectAll() throws Exception {
 		return mapper.selectAll();
 	}
+	
+	public int updateById(int id, String description) throws Exception {
+		return mapper.updateById(id, description);
+	}
 
 	public int deleteById(int id) throws Exception {
 		return mapper.deleteById(id);

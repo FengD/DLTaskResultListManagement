@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -82,6 +83,19 @@ public class DetectionTaskController {
 		Response response;
 		try {
 			response = new Response(service.deleteById(id), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response = new Response(null, HttpStatus.NOT_FOUND);
+		}
+		return response.getResponse();
+	}
+
+	@PutMapping("{id}")
+	@ApiOperation(value = "DetectionTask", notes = "update DetectionTask description by id")
+	public Object update(@PathVariable int id, String description) {
+		Response response;
+		try {
+			response = new Response(service.updateById(id, description), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			response = new Response(null, HttpStatus.NOT_FOUND);

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import crdc.airi.datesets_manager.bean.DetectionTask;
 
@@ -33,8 +34,11 @@ public interface DetecitonTaskMapper {
 	List<DetectionTask> selectByName(String name);
 
 	@Select("SELECT * FROM crdc_airi_detection_task ORDER BY detection_task_id ASC")
-
 	List<DetectionTask> selectAll();
+
+	@Update("Update crdc_airi_detection_task set description=#{description,jdbcType=VARCHAR} where"
+			+ " detection_task_id=#{id,jdbcType=INTEGER}")
+	int updateById(int id, String description);
 
 	@Delete("delete from crdc_airi_detection_task where detection_task_id=#{id,jdbcType=INTEGER}")
 	int deleteById(int id);

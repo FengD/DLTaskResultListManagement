@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import crdc.airi.datesets_manager.bean.TrackingTask;
 
@@ -33,6 +34,10 @@ public interface TrackingTaskMapper {
 
 	@Select("SELECT * FROM crdc_airi_tracking_task ORDER BY tracking_task_id ASC")
 	List<TrackingTask> selectAll();
+
+	@Update("Update crdc_airi_tracking_task set description=#{description,jdbcType=VARCHAR} where"
+			+ " tracking_task_id=#{id,jdbcType=INTEGER}")
+	int updateById(int id, String description);
 
 	@Delete("delete from crdc_airi_tracking_task where tracking_task_id=#{id,jdbcType=INTEGER}")
 	int deleteById(int id);

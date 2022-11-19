@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import crdc.airi.datesets_manager.bean.SegmentationTask;
 
@@ -33,6 +34,10 @@ public interface SegmentationTaskMapper {
 
 	@Select("SELECT * FROM crdc_airi_segmentation_task ORDER BY segmentation_task_id ASC")
 	List<SegmentationTask> selectAll();
+	
+	@Update("Update crdc_airi_segmentation_task set description=#{description,jdbcType=VARCHAR} where"
+			+ " segmentation_task_id=#{id,jdbcType=INTEGER}")
+	int updateById(int id, String description);
 
 	@Delete("delete from crdc_airi_segmentation_task where segmentation_task_id=#{id,jdbcType=INTEGER}")
 	int deleteById(int id);

@@ -47,7 +47,9 @@ const detectionOptions = {
         headerName: 'Details Information',
         children : [
           { headerName: 'Authors', field: 'authors', columnGroupShow: 'closed'},
-          { headerName: 'Description', field: 'description', columnGroupShow: 'open',singleClickEdit: true}
+          { headerName: 'Description', field: 'description', columnGroupShow: 'open',editable: true, 
+          // uses the provided Text Cell Editor (which is the default)
+          cellEditor: 'agTextCellEditor' }
         ]
       }
       
@@ -68,6 +70,14 @@ const detectionOptions = {
       createNDSChart(params.api);
       createFPSChart(params.api);
     },
+    onCellValueChanged: function(event) {
+      if (event.column.colId == "description") {
+        if (event.newValue != event.oldValue) {
+          console.log(event.data.id, event.newValue);
+          putDetectionTaskDesciption(event.data.id, event.newValue);
+        }
+      }
+    }
 };
 
 const segmentationOptions = {
@@ -115,7 +125,9 @@ const segmentationOptions = {
       headerName: 'Details Information',
       children : [
         { headerName: 'Authors', field: 'authors', columnGroupShow: 'closed'},
-        { headerName: 'Description', field: 'description', columnGroupShow: 'open'}
+        { headerName: 'Description', field: 'description', columnGroupShow: 'open',editable: true, 
+        // uses the provided Text Cell Editor (which is the default)
+        cellEditor: 'agTextCellEditor' }
       ]
     }
     
@@ -136,6 +148,14 @@ const segmentationOptions = {
     createMACCChart(params.api);
     createFPSChart(params.api);
   },
+  onCellValueChanged: function(event) {
+    if (event.column.colId == "description") {
+      if (event.newValue != event.oldValue) {
+        console.log(event.data.id, event.newValue);
+        putSegmentationTaskDesciption(event.data.id, event.newValue);
+      }
+    }
+  }
 };
 
 const trackingOptions = {
@@ -184,7 +204,9 @@ const trackingOptions = {
       headerName: 'Details Information',
       children : [
         { headerName: 'Authors', field: 'authors', columnGroupShow: 'closed'},
-        { headerName: 'Description', field: 'description', columnGroupShow: 'open'}
+        { headerName: 'Description', field: 'description', columnGroupShow: 'open',editable: true, 
+        // uses the provided Text Cell Editor (which is the default)
+        cellEditor: 'agTextCellEditor' }
       ]
     }
     
@@ -204,6 +226,14 @@ const trackingOptions = {
     createMOTPChart(params.api);
     createMOTAChart(params.api);
   },
+  onCellValueChanged: function(event) {
+    if (event.column.colId == "description") {
+      if (event.newValue != event.oldValue) {
+        console.log(event.data.id, event.newValue);
+        putTrackingTaskDesciption(event.data.id, event.newValue);
+      }
+    }
+  }
 };
   
 function createMAPChart(gridApi) {

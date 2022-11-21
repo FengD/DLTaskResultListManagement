@@ -3,9 +3,9 @@ const detectionOptions = {
       {
         headerName: 'Basic Infomation',
         children: [
-          { headerName: 'DATE', field: 'create_time', chartDataType: 'category'},
-          { headerName: 'NAME', field: 'name', chartDataType: 'category'},
-          { headerName: 'MODALITIES', field: 'modalities', chartDataType: 'category'},
+          { headerName: 'DATE', field: 'create_time', chartDataType: 'category',tooltipValueGetter: getCellValue},
+          { headerName: 'NAME', field: 'name', chartDataType: 'category',tooltipValueGetter: getCellValue},
+          { headerName: 'MODALITIES', field: 'modalities', chartDataType: 'category',tooltipValueGetter: getCellValue},
           { headerName: 'mAP', field: 'map', chartDataType: 'series', columnGroupShow: 'closed'},
           { headerName: 'mATE', field: 'mate', columnGroupShow: 'open' },
           { headerName: 'mASE', field: 'mase', columnGroupShow: 'open' },
@@ -13,10 +13,12 @@ const detectionOptions = {
           { headerName: 'mAVE', field: 'mave', columnGroupShow: 'open' },
           { headerName: 'mAAE', field: 'maae', columnGroupShow: 'open' },
           { headerName: 'NDS', field: 'nds'},
-          { headerName: 'FPS', field: 'fps', columnGroupShow: 'closed'},
-          { headerName: 'STATE', field: 'state_report_url', columnGroupShow: 'closed',
+          { headerName: 'FPS', field: 'fps', columnGroupShow: 'closed',
+          editable: true, 
+          cellEditor: 'agTextCellEditor'},
+          { headerName: 'STATE', field: 'state_report_url', columnGroupShow: 'closed',tooltipValueGetter: getCellValue,
             cellRenderer: function(params) {
-              return '<a href=' + params.value + '><i class="fa fa-chart-simple"></i></a>'
+              return '<a href=' + params.value + '><i class="fa fa-chart-simple"></i>' + params.value + '</a>'
             }
           },
         ]
@@ -24,21 +26,21 @@ const detectionOptions = {
       {
         headerName: 'Link Information',
         children : [
-          { headerName: 'Dateset', field: 'test_dataset_url',
+          { headerName: 'Dateset', field: 'test_dataset_url', tooltipValueGetter: getCellValue,
           cellRenderer: function(params) {
             return '<a href=' + params.value + '><i class="fa fa-database"></i>' + params.value + '</a>'
           }},
-          { headerName: 'Model', field: 'model_files_url', columnGroupShow: 'closed',
+          { headerName: 'Model', field: 'model_files_url', columnGroupShow: 'closed',tooltipValueGetter: getCellValue,
           cellRenderer: function(params) {
             return '<a href=' + params.value + '><i class="fa fa-database"></i>' + params.value + '</a>'
           }},
-          { headerName: 'Pico', field: 'pico_results_url', columnGroupShow: 'open',
+          { headerName: 'Pico', field: 'pico_results_url', columnGroupShow: 'open',tooltipValueGetter: getCellValue,
           cellRenderer: function(params) {
-            return '<a href=' + params.value + '><i class="fa fa-database"></i></a>'
+            return '<a href=' + params.value + '><i class="fa fa-database"></i>' + params.value + '</a>'
           }},
-          { headerName: 'Details', field: 'result_details_url', columnGroupShow: 'open',
+          { headerName: 'Details', field: 'result_details_url', columnGroupShow: 'open',tooltipValueGetter: getCellValue,
           cellRenderer: function(params) {
-            return '<a href=' + params.value + '><i class="fa fa-database"></i></a>'
+            return '<a href=' + params.value + '><i class="fa fa-database"></i>' + params.value + '</a>'
           }},
           { headerName: 'Class', field: 'nb_object_class', columnGroupShow: 'open'}
         ]
@@ -46,10 +48,10 @@ const detectionOptions = {
       {
         headerName: 'Details Information',
         children : [
-          { headerName: 'Authors', field: 'authors', columnGroupShow: 'closed'},
-          { headerName: 'Description', field: 'description', columnGroupShow: 'open',editable: true, 
-          // uses the provided Text Cell Editor (which is the default)
-          cellEditor: 'agTextCellEditor' }
+          { headerName: 'Authors', field: 'authors', columnGroupShow: 'closed',tooltipValueGetter: getCellValue},
+          { headerName: 'Description', field: 'description', columnGroupShow: 'open',
+              editable: true, 
+              cellEditor: 'agTextCellEditor',tooltipValueGetter: getCellValue}
         ]
       }
       
@@ -62,7 +64,7 @@ const detectionOptions = {
       floatingFilter: true,
       resizable: true,
     },
-    rowData: getDetectionTaskData(),
+    rowData: getTaskData("DetectionTask"),
     enableCharts: true,
     chartThemes: ['ag-default-dark'],
     onFirstDataRendered: function(params) {
@@ -73,8 +75,11 @@ const detectionOptions = {
     onCellValueChanged: function(event) {
       if (event.column.colId == "description") {
         if (event.newValue != event.oldValue) {
-          console.log(event.data.id, event.newValue);
-          putDetectionTaskDesciption(event.data.id, event.newValue);
+          putTaskDesciption("DetectionTask", event.data.id, event.newValue);
+        }
+      } else if (event.column.colId == "fps") {
+        if (event.newValue != event.oldValue) {
+          putTaskFps("DetectionTask", event.data.id, event.newValue);
         }
       }
     }
@@ -85,16 +90,18 @@ const segmentationOptions = {
     {
       headerName: 'Basic Infomation',
       children: [
-        { headerName: 'DATE', field: 'create_time', chartDataType: 'category'},
-        { headerName: 'NAME', field: 'name', chartDataType: 'category'},
-        { headerName: 'MODALITIES', field: 'modalities', chartDataType: 'category'},
+        { headerName: 'DATE', field: 'create_time', chartDataType: 'category',tooltipValueGetter: getCellValue},
+        { headerName: 'NAME', field: 'name', chartDataType: 'category',tooltipValueGetter: getCellValue},
+        { headerName: 'MODALITIES', field: 'modalities', chartDataType: 'category',tooltipValueGetter: getCellValue},
         { headerName: 'mIOU', field: 'miou'},
         { headerName: 'mACC', field: 'macc'},
         { headerName: 'mBoundary', field: 'mboundary'},
-        { headerName: 'FPS', field: 'fps'},
-        { headerName: 'STATE', field: 'state_report_url',
+        { headerName: 'FPS', field: 'fps',
+        editable: true, 
+        cellEditor: 'agTextCellEditor'},
+        { headerName: 'STATE', field: 'state_report_url',tooltipValueGetter: getCellValue,
           cellRenderer: function(params) {
-            return '<a href=' + params.value + '><i class="fa fa-chart-simple"></i></a>'
+            return '<a href=' + params.value + '><i class="fa fa-chart-simple"></i>' + params.value + '</a>'
           }
         },
       ]
@@ -102,21 +109,21 @@ const segmentationOptions = {
     {
       headerName: 'Link Information',
       children : [
-        { headerName: 'Dateset', field: 'test_dataset_url',
+        { headerName: 'Dateset', field: 'test_dataset_url',tooltipValueGetter: getCellValue,
         cellRenderer: function(params) {
           return '<a href=' + params.value + '><i class="fa fa-database"></i>' + params.value + '</a>'
         }},
-        { headerName: 'Model', field: 'model_files_url', columnGroupShow: 'closed',
+        { headerName: 'Model', field: 'model_files_url', columnGroupShow: 'closed',tooltipValueGetter: getCellValue,
         cellRenderer: function(params) {
           return '<a href=' + params.value + '><i class="fa fa-database"></i>' + params.value + '</a>'
         }},
-        { headerName: 'Pico', field: 'pico_results_url', columnGroupShow: 'open',
+        { headerName: 'Pico', field: 'pico_results_url', columnGroupShow: 'open',tooltipValueGetter: getCellValue,
         cellRenderer: function(params) {
-          return '<a href=' + params.value + '><i class="fa fa-database"></i></a>'
+          return '<a href=' + params.value + '><i class="fa fa-database"></i>' + params.value + '</a>'
         }},
-        { headerName: 'Details', field: 'result_details_url', columnGroupShow: 'open',
+        { headerName: 'Details', field: 'result_details_url', columnGroupShow: 'open',tooltipValueGetter: getCellValue,
         cellRenderer: function(params) {
-          return '<a href=' + params.value + '><i class="fa fa-database"></i></a>'
+          return '<a href=' + params.value + '><i class="fa fa-database"></i>' + params.value + '</a>'
         }},
         { headerName: 'Class', field: 'nb_object_class', columnGroupShow: 'open'}
       ]
@@ -124,10 +131,10 @@ const segmentationOptions = {
     {
       headerName: 'Details Information',
       children : [
-        { headerName: 'Authors', field: 'authors', columnGroupShow: 'closed'},
-        { headerName: 'Description', field: 'description', columnGroupShow: 'open',editable: true, 
-        // uses the provided Text Cell Editor (which is the default)
-        cellEditor: 'agTextCellEditor' }
+        { headerName: 'Authors', field: 'authors', columnGroupShow: 'closed',tooltipValueGetter: getCellValue},
+        { headerName: 'Description', field: 'description', columnGroupShow: 'open',tooltipValueGetter: getCellValue,
+        editable: true, 
+        cellEditor: 'agTextCellEditor'}
       ]
     }
     
@@ -140,7 +147,7 @@ const segmentationOptions = {
     floatingFilter: true,
     resizable: true,
   },
-  rowData: getSegmentationTaskData(),
+  rowData: getTaskData("SegmentationTask"),
   enableCharts: true,
   chartThemes: ['ag-default-dark'],
   onFirstDataRendered: function(params) {
@@ -151,8 +158,11 @@ const segmentationOptions = {
   onCellValueChanged: function(event) {
     if (event.column.colId == "description") {
       if (event.newValue != event.oldValue) {
-        console.log(event.data.id, event.newValue);
-        putSegmentationTaskDesciption(event.data.id, event.newValue);
+        putTaskDesciption("SegmentationTask", event.data.id, event.newValue);
+      }
+    } else if (event.column.colId == "fps") {
+      if (event.newValue != event.oldValue) {
+        putTaskFps("SegmentationTask", event.data.id, event.newValue);
       }
     }
   }
@@ -163,17 +173,17 @@ const trackingOptions = {
     {
       headerName: 'Basic Infomation',
       children: [
-        { headerName: 'DATE', field: 'create_time', chartDataType: 'category'},
-        { headerName: 'NAME', field: 'name', chartDataType: 'category'},
-        { headerName: 'MODALITIES', field: 'modalities', chartDataType: 'category'},
+        { headerName: 'DATE', field: 'create_time', chartDataType: 'category',tooltipValueGetter: getCellValue},
+        { headerName: 'NAME', field: 'name', chartDataType: 'category',tooltipValueGetter: getCellValue},
+        { headerName: 'MODALITIES', field: 'modalities', chartDataType: 'category',tooltipValueGetter: getCellValue},
         { headerName: 'MOTA', field: 'mota'},
         { headerName: 'MOTP', field: 'motp'},
         { headerName: 'AMOTA', field: 'amota', columnGroupShow: 'open'},
         { headerName: 'AMOTP', field: 'amotp', columnGroupShow: 'open'},
         { headerName: 'MOTAR', field: 'motar', columnGroupShow: 'open'},
-        { headerName: 'STATE', field: 'state_report_url',
+        { headerName: 'STATE', field: 'state_report_url',tooltipValueGetter: getCellValue,
           cellRenderer: function(params) {
-            return '<a href=' + params.value + '><i class="fa fa-chart-simple"></i></a>'
+            return '<a href=' + params.value + '><i class="fa fa-chart-simple"></i>' + params.value + '</a>'
           }
         },
       ]
@@ -181,21 +191,21 @@ const trackingOptions = {
     {
       headerName: 'Link Information',
       children : [
-        { headerName: 'Dateset', field: 'test_dataset_url',
+        { headerName: 'Dateset', field: 'test_dataset_url',tooltipValueGetter: getCellValue,
         cellRenderer: function(params) {
           return '<a href=' + params.value + '><i class="fa fa-database"></i>' + params.value + '</a>'
         }},
-        { headerName: 'Model', field: 'model_files_url', columnGroupShow: 'closed',
+        { headerName: 'Model', field: 'model_files_url', columnGroupShow: 'closed',tooltipValueGetter: getCellValue,
         cellRenderer: function(params) {
           return '<a href=' + params.value + '><i class="fa fa-database"></i>' + params.value + '</a>'
         }},
-        { headerName: 'Pico', field: 'pico_results_url', columnGroupShow: 'open',
+        { headerName: 'Pico', field: 'pico_results_url', columnGroupShow: 'open',tooltipValueGetter: getCellValue,
         cellRenderer: function(params) {
-          return '<a href=' + params.value + '><i class="fa fa-database"></i></a>'
+          return '<a href=' + params.value + '><i class="fa fa-database"></i>' + params.value + '</a>'
         }},
-        { headerName: 'Details', field: 'result_details_url', columnGroupShow: 'open',
+        { headerName: 'Details', field: 'result_details_url', columnGroupShow: 'open',tooltipValueGetter: getCellValue,
         cellRenderer: function(params) {
-          return '<a href=' + params.value + '><i class="fa fa-database"></i></a>'
+          return '<a href=' + params.value + '><i class="fa fa-database"></i>' + params.value + '</a>'
         }},
         { headerName: 'Class', field: 'nb_object_class', columnGroupShow: 'open'}
       ]
@@ -203,8 +213,8 @@ const trackingOptions = {
     {
       headerName: 'Details Information',
       children : [
-        { headerName: 'Authors', field: 'authors', columnGroupShow: 'closed'},
-        { headerName: 'Description', field: 'description', columnGroupShow: 'open',editable: true, 
+        { headerName: 'Authors', field: 'authors', columnGroupShow: 'closed',tooltipValueGetter: getCellValue},
+        { headerName: 'Description', field: 'description', columnGroupShow: 'open',tooltipValueGetter: getCellValue,editable: true, 
         // uses the provided Text Cell Editor (which is the default)
         cellEditor: 'agTextCellEditor' }
       ]
@@ -219,7 +229,7 @@ const trackingOptions = {
     floatingFilter: true,
     resizable: true,
   },
-  rowData: getTrackingTaskData(),
+  rowData: getTaskData("TrackingTask"),
   enableCharts: true,
   chartThemes: ['ag-default-dark'],
   onFirstDataRendered: function(params) {
@@ -229,8 +239,7 @@ const trackingOptions = {
   onCellValueChanged: function(event) {
     if (event.column.colId == "description") {
       if (event.newValue != event.oldValue) {
-        console.log(event.data.id, event.newValue);
-        putTrackingTaskDesciption(event.data.id, event.newValue);
+        putTaskDesciption("TrackingTask", event.data.id, event.newValue);
       }
     }
   }
@@ -367,6 +376,10 @@ function createMOTPChart(gridApi) {
     },
     chartContainer: document.querySelector('#motp-chart'),
   });
+}
+
+function getCellValue(params) {      
+  return params.value;
 }
   
 // setup the grid after the page has finished loading

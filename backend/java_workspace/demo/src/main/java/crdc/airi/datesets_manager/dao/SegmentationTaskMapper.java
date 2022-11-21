@@ -35,9 +35,13 @@ public interface SegmentationTaskMapper {
 	@Select("SELECT segmentation_task_id as id, * FROM crdc_airi_segmentation_task ORDER BY segmentation_task_id ASC")
 	List<SegmentationTask> selectAll();
 	
-	@Update("Update crdc_airi_segmentation_task set description=#{description,jdbcType=VARCHAR} where"
+	@Update("Update crdc_airi_segmentation_task set description=#{description,jdbcType=VARCHAR}, update_time = CURRENT_TIMESTAMP where"
 			+ " segmentation_task_id=#{id,jdbcType=INTEGER}")
 	int updateById(int id, String description);
+	
+	@Update("Update crdc_airi_segmentation_task set fps=#{fps,jdbcType=FLOAT}, update_time = CURRENT_TIMESTAMP where"
+			+ " segmentation_task_id=#{id,jdbcType=INTEGER}")
+	int updateFpsById(int id, float fps);
 
 	@Delete("delete from crdc_airi_segmentation_task where segmentation_task_id=#{id,jdbcType=INTEGER}")
 	int deleteById(int id);

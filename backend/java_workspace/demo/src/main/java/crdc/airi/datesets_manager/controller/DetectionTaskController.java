@@ -102,4 +102,17 @@ public class DetectionTaskController {
 		}
 		return response.getResponse();
 	}
+
+	@PutMapping("fps/{id}")
+	@ApiOperation(value = "DetectionTask", notes = "update DetectionTask fps by id")
+	public Object updateFps(@PathVariable int id, float fps) {
+		Response response;
+		try {
+			response = new Response(service.updateFpsById(id, fps), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response = new Response(null, HttpStatus.NOT_FOUND);
+		}
+		return response.getResponse();
+	}
 }

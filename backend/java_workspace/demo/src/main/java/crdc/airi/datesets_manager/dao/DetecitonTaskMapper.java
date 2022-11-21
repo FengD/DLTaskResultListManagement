@@ -36,9 +36,13 @@ public interface DetecitonTaskMapper {
 	@Select("SELECT detection_task_id as id, * FROM crdc_airi_detection_task ORDER BY detection_task_id ASC")
 	List<DetectionTask> selectAll();
 
-	@Update("Update crdc_airi_detection_task set description=#{description,jdbcType=VARCHAR} where"
+	@Update("Update crdc_airi_detection_task set description=#{description,jdbcType=VARCHAR}, update_time = CURRENT_TIMESTAMP where"
 			+ " detection_task_id=#{id,jdbcType=INTEGER}")
 	int updateById(int id, String description);
+	
+	@Update("Update crdc_airi_detection_task set fps=#{fps,jdbcType=FLOAT}, update_time = CURRENT_TIMESTAMP where"
+			+ " detection_task_id=#{id,jdbcType=INTEGER}")
+	int updateFpsById(int id, float fps);
 
 	@Delete("delete from crdc_airi_detection_task where detection_task_id=#{id,jdbcType=INTEGER}")
 	int deleteById(int id);

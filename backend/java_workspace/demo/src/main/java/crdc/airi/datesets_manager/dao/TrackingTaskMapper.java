@@ -35,7 +35,7 @@ public interface TrackingTaskMapper {
 	@Select("SELECT tracking_task_id as id, * FROM crdc_airi_tracking_task ORDER BY tracking_task_id ASC")
 	List<TrackingTask> selectAll();
 
-	@Update("Update crdc_airi_tracking_task set description=#{description,jdbcType=VARCHAR} where"
+	@Update("Update crdc_airi_tracking_task set description=#{description,jdbcType=VARCHAR}, update_time = CURRENT_TIMESTAMP where"
 			+ " tracking_task_id=#{id,jdbcType=INTEGER}")
 	int updateById(int id, String description);
 

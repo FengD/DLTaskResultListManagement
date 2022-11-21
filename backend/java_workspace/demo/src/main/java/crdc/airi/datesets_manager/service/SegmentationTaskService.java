@@ -36,6 +36,10 @@ public class SegmentationTaskService {
 	public int updateById(int id, String description) throws Exception {
 		return mapper.updateById(id, description);
 	}
+	
+	public int updateFpsById(int id, float fps) throws Exception {
+		return mapper.updateFpsById(id, fps);
+	}
 
 	public int deleteById(int id) throws Exception {
 		return mapper.deleteById(id);

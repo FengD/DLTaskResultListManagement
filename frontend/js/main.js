@@ -2,9 +2,10 @@ const detectionOptions = {
     columnDefs: [
       {
         headerName: 'Basic Infomation',
+        
         children: [
           { headerName: 'DATE', field: 'create_time', chartDataType: 'category',tooltipValueGetter: getCellValue},
-          { headerName: 'NAME', field: 'name', chartDataType: 'category',tooltipValueGetter: getCellValue},
+          { headerName: 'NAME', headerTooltip: 'testest',field: 'name', chartDataType: 'category',tooltipValueGetter: getCellValue},
           { headerName: 'MODALITIES', field: 'modalities', chartDataType: 'category',tooltipValueGetter: getCellValue},
           { headerName: 'mAP', field: 'map', chartDataType: 'series', columnGroupShow: 'closed'},
           { headerName: 'mATE', field: 'mate', columnGroupShow: 'open' },

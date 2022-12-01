@@ -12,6 +12,7 @@
 * {
     box-sizing: border-box;
 }
+
 body, html {
     width: 100%;
     height: 100%;
@@ -60,10 +61,10 @@ nav {
     flex: 1;
     display: flex;
 }
-#map-chart, #nds-chart, #fps-chart, #miou-chart, #macc-chart {
-    width: 33%;
+#chart {
+    width: 100%;
     flex: 1;
-    height: 25%;
+    height: 300px;
 }
 #mota-chart, #motp-chart {
     width: 49%;

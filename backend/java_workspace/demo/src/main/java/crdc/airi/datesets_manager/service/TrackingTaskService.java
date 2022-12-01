@@ -15,9 +15,11 @@ public class TrackingTaskService {
 
 	public int insert(String name, String authors, String description, String test_dataset_url, String model_files_url,
 			String pico_results_url, String modalities, float amota, float amotp, float motar, float mota, float motp,
-			String result_details_url, String state_report_url, int nb_object_class) throws Exception {
+			String result_details_url, String state_report_url, int nb_object_class, String platform,
+			float inference_time_second) throws Exception {
 		return mapper.insert(name, authors, description, test_dataset_url, model_files_url, pico_results_url,
-				modalities, amota, amotp, motar, mota, motp, result_details_url, state_report_url, nb_object_class);
+				modalities, amota, amotp, motar, mota, motp, result_details_url, state_report_url, nb_object_class,
+				platform, inference_time_second);
 	}
 
 	public List<TrackingTask> selectByName(String name) throws Exception {
@@ -31,7 +33,7 @@ public class TrackingTaskService {
 	public List<TrackingTask> selectAll() throws Exception {
 		return mapper.selectAll();
 	}
-	
+
 	public int updateById(int id, String description) throws Exception {
 		return mapper.updateById(id, description);
 	}

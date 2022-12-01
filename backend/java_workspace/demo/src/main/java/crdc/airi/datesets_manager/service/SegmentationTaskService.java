@@ -15,9 +15,11 @@ public class SegmentationTaskService {
 
 	public int insert(String name, String authors, String description, String test_dataset_url, String model_files_url,
 			String pico_results_url, String modalities, float miou, float macc, float mboundary, float fps,
-			String result_details_url, String state_report_url, int nb_object_class) throws Exception {
+			String result_details_url, String state_report_url, int nb_object_class, String platform,
+			float inference_time_second) throws Exception {
 		return mapper.insert(name, authors, description, test_dataset_url, model_files_url, pico_results_url,
-				modalities, miou, macc, mboundary, fps, result_details_url, state_report_url, nb_object_class);
+				modalities, miou, macc, mboundary, fps, result_details_url, state_report_url, nb_object_class, platform,
+				inference_time_second);
 	}
 
 	public List<SegmentationTask> selectByName(String name) throws Exception {
@@ -32,11 +34,11 @@ public class SegmentationTaskService {
 	public List<SegmentationTask> selectAll() throws Exception {
 		return mapper.selectAll();
 	}
-	
+
 	public int updateById(int id, String description) throws Exception {
 		return mapper.updateById(id, description);
 	}
-	
+
 	public int updateFpsById(int id, float fps) throws Exception {
 		return mapper.updateFpsById(id, fps);
 	}

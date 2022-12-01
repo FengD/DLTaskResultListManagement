@@ -23,6 +23,9 @@ public class SegmentationTask {
 	private int nb_object_class;
 	private String create_time;
 	private String update_time;
+	private String platform;
+	private float inference_time_second;
+
 	public int getId() {
 		return id;
 	}
@@ -124,5 +127,17 @@ public class SegmentationTask {
 	}
 	public void setUpdate_time(String update_time) {
 		this.update_time = update_time;
+	}
+	public String getPlatform() {
+		return platform;
+	}
+	public void setPlatform(String platform) {
+		this.platform = platform;
+	}
+	public float getInference_time_second() {
+		return inference_time_second;
+	}
+	public void setInference_time_second(float inference_time_second) {
+		this.inference_time_second = inference_time_second;
 	}
 }

@@ -27,6 +27,14 @@ public class DetectionTask {
 	private int nb_object_class;
 	private String create_time;
 	private String update_time;
+	private String platform;
+	private float inference_time_second;
+	private float percision1;
+	private float recall1;
+	private float offset_pixel;
+	private float mse;
+	private float percision2;
+	private float recall2;
 
 	public int getId() {
 		return id;
@@ -194,5 +202,69 @@ public class DetectionTask {
 
 	public void setUpdate_time(String update_time) {
 		this.update_time = update_time;
+	}
+
+	public String getPlatform() {
+		return platform;
+	}
+
+	public void setPlatform(String platform) {
+		this.platform = platform;
+	}
+
+	public float getInference_time_second() {
+		return inference_time_second;
+	}
+
+	public void setInference_time_second(float inference_time_second) {
+		this.inference_time_second = inference_time_second;
+	}
+
+	public float getPercision1() {
+		return percision1;
+	}
+
+	public void setPercision1(float percision1) {
+		this.percision1 = percision1;
+	}
+
+	public float getRecall1() {
+		return recall1;
+	}
+
+	public void setRecall1(float recall1) {
+		this.recall1 = recall1;
+	}
+
+	public float getOffset_pixel() {
+		return offset_pixel;
+	}
+
+	public void setOffset_pixel(float offset_pixel) {
+		this.offset_pixel = offset_pixel;
+	}
+
+	public float getMse() {
+		return mse;
+	}
+
+	public void setMse(float mse) {
+		this.mse = mse;
+	}
+
+	public float getPercision2() {
+		return percision2;
+	}
+
+	public void setPercision2(float percision2) {
+		this.percision2 = percision2;
+	}
+
+	public float getRecall2() {
+		return recall2;
+	}
+
+	public void setRecall2(float recall2) {
+		this.recall2 = recall2;
 	}
 }

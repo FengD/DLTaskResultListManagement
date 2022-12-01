@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import crdc.airi.datesets_manager.service.DetectionTaskService;
@@ -61,15 +62,33 @@ public class DetectionTaskController {
 
 	@PostMapping("")
 	@ApiOperation(value = "DetectionTask", notes = "insert DetectionTask")
-	public Object insert(String name, String authors, String description, String test_dataset_url,
-			String model_files_url, String pico_results_url, String modalities, float map, float mate, float mase,
-			float maoe, float mave, float maae, float nds, float fps, String result_details_url,
-			String state_report_url, int nb_object_class) {
+	public Object insert(@RequestParam String name, @RequestParam String authors, @RequestParam String description,
+			@RequestParam String test_dataset_url, @RequestParam String model_files_url,
+			@RequestParam String pico_results_url, @RequestParam String modalities,
+			@RequestParam(required = false, defaultValue = "0") float map,
+			@RequestParam(required = false, defaultValue = "0") float mate,
+			@RequestParam(required = false, defaultValue = "0") float mase,
+			@RequestParam(required = false, defaultValue = "0") float maoe,
+			@RequestParam(required = false, defaultValue = "0") float mave,
+			@RequestParam(required = false, defaultValue = "0") float maae,
+			@RequestParam(required = false, defaultValue = "0") float nds,
+			@RequestParam(required = false, defaultValue = "0") float fps,
+			@RequestParam(required = false, defaultValue = "N/A") String result_details_url,
+			@RequestParam String state_report_url, @RequestParam int nb_object_class,
+			@RequestParam(required = false, defaultValue = "N/A") String platform,
+			@RequestParam(required = false, defaultValue = "0") float inference_time_second,
+			@RequestParam(required = false, defaultValue = "0") float percision1,
+			@RequestParam(required = false, defaultValue = "0") float recall1,
+			@RequestParam(required = false, defaultValue = "0") float offset_pixel,
+			@RequestParam(required = false, defaultValue = "0") float mse,
+			@RequestParam(required = false, defaultValue = "0") float percision2,
+			@RequestParam(required = false, defaultValue = "0") float recall2) {
 		Response response;
 		try {
 			response = new Response(service.insert(name, authors, description, test_dataset_url, model_files_url,
 					pico_results_url, modalities, map, mate, mase, maoe, mave, maae, nds, fps, result_details_url,
-					state_report_url, nb_object_class), HttpStatus.OK);
+					state_report_url, nb_object_class, platform, inference_time_second, percision1, recall1,
+					offset_pixel, mse, percision2, recall2), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			response = new Response(null, HttpStatus.FOUND);

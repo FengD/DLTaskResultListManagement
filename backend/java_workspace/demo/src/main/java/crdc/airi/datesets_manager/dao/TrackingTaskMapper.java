@@ -15,16 +15,18 @@ public interface TrackingTaskMapper {
 
 	@Insert("INSERT INTO crdc_airi_tracking_task(name,authors,description,test_dataset_url,"
 			+ "model_files_url,pico_results_url,modalities," + "amota,amotp,motar,mota,motp,"
-			+ "result_details_url,state_report_url,nb_object_class) VALUES (" + "#{name,jdbcType=VARCHAR}, "
-			+ "#{authors,jdbcType=VARCHAR}," + "#{description,jdbcType=VARCHAR},"
+			+ "result_details_url,state_report_url,nb_object_class,platform,inference_time_second) VALUES ("
+			+ "#{name,jdbcType=VARCHAR}, " + "#{authors,jdbcType=VARCHAR}," + "#{description,jdbcType=VARCHAR},"
 			+ "#{test_dataset_url,jdbcType=VARCHAR}," + "#{model_files_url,jdbcType=VARCHAR},"
 			+ "#{pico_results_url,jdbcType=VARCHAR}," + "#{modalities,jdbcType=VARCHAR}," + "#{amota,jdbcType=FLOAT},"
 			+ "#{amotp,jdbcType=FLOAT}," + "#{motar,jdbcType=FLOAT}," + "#{mota,jdbcType=FLOAT},"
 			+ "#{motp,jdbcType=FLOAT}," + "#{result_details_url,jdbcType=VARCHAR},"
-			+ "#{state_report_url,jdbcType=VARCHAR}," + "#{nb_object_class,jdbcType=INTEGER}" + ")")
+			+ "#{state_report_url,jdbcType=VARCHAR}," + "#{nb_object_class,jdbcType=INTEGER},"
+			+ "#{platform,jdbcType=VARCHAR}," + "#{inference_time_second,jdbcType=FLOAT}" + ")")
 	int insert(String name, String authors, String description, String test_dataset_url, String model_files_url,
 			String pico_results_url, String modalities, float amota, float amotp, float motar, float mota, float motp,
-			String result_details_url, String state_report_url, int nb_object_class);
+			String result_details_url, String state_report_url, int nb_object_class, String platform,
+			float inference_time_second);
 
 	@Select("SELECT tracking_task_id as id, * FROM crdc_airi_tracking_task WHERE tracking_task_id=#{id,jdbcType=INTEGER}")
 	TrackingTask selectById(int id);

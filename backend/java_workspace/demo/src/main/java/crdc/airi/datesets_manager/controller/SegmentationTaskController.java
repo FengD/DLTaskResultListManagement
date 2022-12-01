@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import crdc.airi.datesets_manager.service.SegmentationTaskService;
@@ -61,14 +62,21 @@ public class SegmentationTaskController {
 
 	@PostMapping("")
 	@ApiOperation(value = "SegmentationTask", notes = "insert SegmentationTask")
-	public Object insert(String name, String authors, String description, String test_dataset_url,
-			String model_files_url, String pico_results_url, String modalities, float miou, float macc, float mboundary,
-			float fps, String result_details_url, String state_report_url, int nb_object_class) {
+	public Object insert(@RequestParam String name, @RequestParam String authors, @RequestParam String description,
+			@RequestParam String test_dataset_url, @RequestParam String model_files_url,
+			@RequestParam String pico_results_url, @RequestParam String modalities, @RequestParam float miou,
+			@RequestParam(required = false, defaultValue = "0") float macc,
+			@RequestParam(required = false, defaultValue = "0") float mboundary,
+			@RequestParam(required = false, defaultValue = "0") float fps,
+			@RequestParam(required = false, defaultValue = "N/A") String result_details_url,
+			@RequestParam String state_report_url, @RequestParam int nb_object_class,
+			@RequestParam(required = false, defaultValue = "N/A") String platform,
+			@RequestParam(required = false, defaultValue = "0") float inference_time_second) {
 		Response response;
 		try {
 			response = new Response(service.insert(name, authors, description, test_dataset_url, model_files_url,
 					pico_results_url, modalities, miou, macc, mboundary, fps, result_details_url, state_report_url,
-					nb_object_class), HttpStatus.OK);
+					nb_object_class, platform, inference_time_second), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			response = new Response(null, HttpStatus.FOUND);
@@ -88,7 +96,7 @@ public class SegmentationTaskController {
 		}
 		return response.getResponse();
 	}
-	
+
 	@PutMapping("{id}")
 	@ApiOperation(value = "SegmentationTask", notes = "update SegmentationTask description by id")
 	public Object update(@PathVariable int id, String description) {
@@ -101,7 +109,7 @@ public class SegmentationTaskController {
 		}
 		return response.getResponse();
 	}
-	
+
 	@PutMapping("fps/{id}")
 	@ApiOperation(value = "SegmentationTask", notes = "update SegmentationTask fps by id")
 	public Object updateFps(@PathVariable int id, float fps) {

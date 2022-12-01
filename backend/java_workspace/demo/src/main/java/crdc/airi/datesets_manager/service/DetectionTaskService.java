@@ -16,11 +16,11 @@ public class DetectionTaskService {
 	public int insert(String name, String authors, String description, String test_dataset_url, String model_files_url,
 			String pico_results_url, String modalities, float map, float mate, float mase, float maoe, float mave,
 			float maae, float nds, float fps, String result_details_url, String state_report_url, int nb_object_class,
-			String platform, float inference_time_second, float percision1, float recall1, float offset_pixel,
-			float mse, float percision2, float recall2) throws Exception {
+			String platform, float inference_time_second, float precision1, float recall1, float offset_pixel,
+			float mse, float precision2, float recall2) throws Exception {
 		return mapper.insert(name, authors, description, test_dataset_url, model_files_url, pico_results_url,
 				modalities, map, mate, mase, maoe, mave, maae, nds, fps, result_details_url, state_report_url,
-				nb_object_class, platform, inference_time_second, percision1, recall1, offset_pixel, mse, percision2,
+				nb_object_class, platform, inference_time_second, precision1, recall1, offset_pixel, mse, precision2,
 				recall2);
 	}
 

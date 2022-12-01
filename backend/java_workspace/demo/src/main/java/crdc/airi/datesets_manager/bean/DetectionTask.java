@@ -29,11 +29,11 @@ public class DetectionTask {
 	private String update_time;
 	private String platform;
 	private float inference_time_second;
-	private float percision1;
+	private float precision1;
 	private float recall1;
 	private float offset_pixel;
 	private float mse;
-	private float percision2;
+	private float precision2;
 	private float recall2;
 
 	public int getId() {
@@ -220,14 +220,6 @@ public class DetectionTask {
 		this.inference_time_second = inference_time_second;
 	}
 
-	public float getPercision1() {
-		return percision1;
-	}
-
-	public void setPercision1(float percision1) {
-		this.percision1 = percision1;
-	}
-
 	public float getRecall1() {
 		return recall1;
 	}
@@ -252,19 +244,27 @@ public class DetectionTask {
 		this.mse = mse;
 	}
 
-	public float getPercision2() {
-		return percision2;
-	}
-
-	public void setPercision2(float percision2) {
-		this.percision2 = percision2;
-	}
-
 	public float getRecall2() {
 		return recall2;
 	}
 
 	public void setRecall2(float recall2) {
 		this.recall2 = recall2;
+	}
+
+	public float getPrecision1() {
+		return precision1;
+	}
+
+	public void setPrecision1(float precision1) {
+		this.precision1 = precision1;
+	}
+
+	public float getPrecision2() {
+		return precision2;
+	}
+
+	public void setPrecision2(float precision2) {
+		this.precision2 = precision2;
 	}
 }

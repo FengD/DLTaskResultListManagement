@@ -29,12 +29,12 @@ public class DetectionTask {
 	private String update_time;
 	private String platform;
 	private float inference_time_second;
-	private float precision1;
-	private float recall1;
+	private float precision_box;
+	private float recall_box;
 	private float offset_pixel;
 	private float mse;
-	private float precision2;
-	private float recall2;
+	private float precision_point;
+	private float recall_point;
 
 	public int getId() {
 		return id;
@@ -220,12 +220,12 @@ public class DetectionTask {
 		this.inference_time_second = inference_time_second;
 	}
 
-	public float getRecall1() {
-		return recall1;
+	public float getrecall_box() {
+		return recall_box;
 	}
 
-	public void setRecall1(float recall1) {
-		this.recall1 = recall1;
+	public void setrecall_box(float recall_box) {
+		this.recall_box = recall_box;
 	}
 
 	public float getOffset_pixel() {
@@ -244,27 +244,27 @@ public class DetectionTask {
 		this.mse = mse;
 	}
 
-	public float getRecall2() {
-		return recall2;
+	public float getrecall_point() {
+		return recall_point;
 	}
 
-	public void setRecall2(float recall2) {
-		this.recall2 = recall2;
+	public void setrecall_point(float recall_point) {
+		this.recall_point = recall_point;
 	}
 
-	public float getPrecision1() {
-		return precision1;
+	public float getprecision_box() {
+		return precision_box;
 	}
 
-	public void setPrecision1(float precision1) {
-		this.precision1 = precision1;
+	public void setprecision_box(float precision_box) {
+		this.precision_box = precision_box;
 	}
 
-	public float getPrecision2() {
-		return precision2;
+	public float getprecision_point() {
+		return precision_point;
 	}
 
-	public void setPrecision2(float precision2) {
-		this.precision2 = precision2;
+	public void setprecision_point(float precision_point) {
+		this.precision_point = precision_point;
 	}
 }

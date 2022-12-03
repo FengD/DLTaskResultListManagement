@@ -68,9 +68,9 @@ public class TrackingTaskController {
 			@RequestParam(required = false, defaultValue = "0") float amota,
 			@RequestParam(required = false, defaultValue = "0") float amotp,
 			@RequestParam(required = false, defaultValue = "0") float motar, @RequestParam float mota,
-			@RequestParam float motp, @RequestParam(required = false, defaultValue = "N/A") String result_details_url,
+			@RequestParam float motp, @RequestParam(required = false, defaultValue = "") String result_details_url,
 			@RequestParam String state_report_url, @RequestParam int nb_object_class,
-			@RequestParam(required = false, defaultValue = "N/A") String platform,
+			@RequestParam(required = false, defaultValue = "") String platform,
 			@RequestParam(required = false, defaultValue = "0") float inference_time_second) {
 		Response response;
 		try {

@@ -15,10 +15,10 @@ const detectionOptions = {
           // { headerName: 'mAAE', field: 'maae', columnGroupShow: 'open' },
           { headerName: 'MSE', field: 'mse', columnGroupShow: 'open' },
           { headerName: 'Offset(P)', field: 'offset_pixel', columnGroupShow: 'closed' },
-          { headerName: 'Precision', field: 'precision1', columnGroupShow: 'open' },
-          { headerName: 'Precision(P)', field: 'precision2', columnGroupShow: 'open' },
-          { headerName: 'Recall', field: 'recall1'},
-          { headerName: 'Recall(P)', field: 'recall2', columnGroupShow: 'open' },
+          { headerName: 'Precision', field: 'precision_box', columnGroupShow: 'open' },
+          { headerName: 'Precision(P)', field: 'precision_point', columnGroupShow: 'open' },
+          { headerName: 'Recall', field: 'recall_box'},
+          { headerName: 'Recall(P)', field: 'recall_point', columnGroupShow: 'open' },
           { headerName: 'NDS', field: 'nds', columnGroupShow: 'open' },
           { headerName: 'Inference Time(s)', field: 'inference_time_second', columnGroupShow: 'closed'},
           { headerName: 'FPS', field: 'fps', columnGroupShow: 'open',
@@ -260,7 +260,7 @@ function createChart(gridApi) {
   var createRangeChartParams = {
     chartType: 'line',
     cellRange: {
-      columns: ['name', 'map', 'miou', 'mota', 'precision1'],
+      columns: ['name', 'map', 'miou', 'mota', 'precision_box'],
     },
     chartThemeOverrides: {
       common: {

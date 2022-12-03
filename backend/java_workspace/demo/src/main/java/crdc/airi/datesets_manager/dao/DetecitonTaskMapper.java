@@ -15,8 +15,8 @@ public interface DetecitonTaskMapper {
 
 	@Insert("INSERT INTO crdc_airi_detection_task(name,authors,description,test_dataset_url,"
 			+ "model_files_url,pico_results_url,modalities,map,mate,mase,maoe,mave,maae,nds,fps,"
-			+ "result_details_url,state_report_url,nb_object_class,platform,inference_time_second,precision1,"
-			+ "recall1,offset_pixel,mse,precision2,recall2) VALUES (" + "#{name,jdbcType=VARCHAR}, "
+			+ "result_details_url,state_report_url,nb_object_class,platform,inference_time_second,precision_box,"
+			+ "recall_box,offset_pixel,mse,precision_point,recall_point) VALUES (" + "#{name,jdbcType=VARCHAR}, "
 			+ "#{authors,jdbcType=VARCHAR}," + "#{description,jdbcType=VARCHAR},"
 			+ "#{test_dataset_url,jdbcType=VARCHAR}," + "#{model_files_url,jdbcType=VARCHAR},"
 			+ "#{pico_results_url,jdbcType=VARCHAR}," + "#{modalities,jdbcType=VARCHAR}," + "#{map,jdbcType=FLOAT},"
@@ -25,13 +25,13 @@ public interface DetecitonTaskMapper {
 			+ "#{fps,jdbcType=FLOAT}," + "#{result_details_url,jdbcType=VARCHAR},"
 			+ "#{state_report_url,jdbcType=VARCHAR}," + "#{nb_object_class,jdbcType=INTEGER},"
 			+ "#{platform,jdbcType=VARCHAR}," + "#{inference_time_second,jdbcType=FLOAT},"
-			+ "#{precision1,jdbcType=FLOAT}," + "#{recall1,jdbcType=FLOAT}," + "#{offset_pixel,jdbcType=FLOAT},"
-			+ "#{mse,jdbcType=FLOAT}," + "#{precision2,jdbcType=FLOAT}," + "#{recall2,jdbcType=FLOAT}" + ")")
+			+ "#{precision_box,jdbcType=FLOAT}," + "#{recall_box,jdbcType=FLOAT}," + "#{offset_pixel,jdbcType=FLOAT},"
+			+ "#{mse,jdbcType=FLOAT}," + "#{precision_point,jdbcType=FLOAT}," + "#{recall_point,jdbcType=FLOAT}" + ")")
 	int insert(String name, String authors, String description, String test_dataset_url, String model_files_url,
 			String pico_results_url, String modalities, float map, float mate, float mase, float maoe, float mave,
 			float maae, float nds, float fps, String result_details_url, String state_report_url, int nb_object_class,
-			String platform, float inference_time_second, float precision1, float recall1, float offset_pixel,
-			float mse, float precision2, float recall2);
+			String platform, float inference_time_second, float precision_box, float recall_box, float offset_pixel,
+			float mse, float precision_point, float recall_point);
 
 	@Select("SELECT detection_task_id as id, * FROM crdc_airi_detection_task WHERE detection_task_id=#{id,jdbcType=INTEGER}")
 	DetectionTask selectById(int id);

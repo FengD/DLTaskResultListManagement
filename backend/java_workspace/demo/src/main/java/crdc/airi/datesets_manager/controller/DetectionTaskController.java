@@ -64,8 +64,7 @@ public class DetectionTaskController {
 	@ApiOperation(value = "DetectionTask", notes = "insert DetectionTask")
 	public Object insert(@RequestParam String name, @RequestParam String authors, @RequestParam String description,
 			@RequestParam String test_dataset_url, @RequestParam String model_files_url,
-			@RequestParam String pico_results_url, @RequestParam String modalities,
-			@RequestParam(required = false, defaultValue = "0") float map,
+			@RequestParam String pico_results_url, @RequestParam String modalities, @RequestParam float map,
 			@RequestParam(required = false, defaultValue = "0") float mate,
 			@RequestParam(required = false, defaultValue = "0") float mase,
 			@RequestParam(required = false, defaultValue = "0") float maoe,
@@ -73,22 +72,22 @@ public class DetectionTaskController {
 			@RequestParam(required = false, defaultValue = "0") float maae,
 			@RequestParam(required = false, defaultValue = "0") float nds,
 			@RequestParam(required = false, defaultValue = "0") float fps,
-			@RequestParam(required = false, defaultValue = "N/A") String result_details_url,
+			@RequestParam(required = false, defaultValue = "") String result_details_url,
 			@RequestParam String state_report_url, @RequestParam int nb_object_class,
-			@RequestParam(required = false, defaultValue = "N/A") String platform,
+			@RequestParam(required = false, defaultValue = "") String platform,
 			@RequestParam(required = false, defaultValue = "0") float inference_time_second,
-			@RequestParam(required = false, defaultValue = "0") float precision1,
-			@RequestParam(required = false, defaultValue = "0") float recall1,
+			@RequestParam(required = false, defaultValue = "0") float precision_box,
+			@RequestParam(required = false, defaultValue = "0") float recall_box,
 			@RequestParam(required = false, defaultValue = "0") float offset_pixel,
 			@RequestParam(required = false, defaultValue = "0") float mse,
-			@RequestParam(required = false, defaultValue = "0") float precision2,
-			@RequestParam(required = false, defaultValue = "0") float recall2) {
+			@RequestParam(required = false, defaultValue = "0") float precision_point,
+			@RequestParam(required = false, defaultValue = "0") float recall_point) {
 		Response response;
 		try {
 			response = new Response(service.insert(name, authors, description, test_dataset_url, model_files_url,
 					pico_results_url, modalities, map, mate, mase, maoe, mave, maae, nds, fps, result_details_url,
-					state_report_url, nb_object_class, platform, inference_time_second, precision1, recall1,
-					offset_pixel, mse, precision2, recall2), HttpStatus.OK);
+					state_report_url, nb_object_class, platform, inference_time_second, precision_box, recall_box,
+					offset_pixel, mse, precision_point, recall_point), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			response = new Response(null, HttpStatus.FOUND);

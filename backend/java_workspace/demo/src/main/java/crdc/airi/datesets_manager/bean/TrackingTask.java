@@ -26,6 +26,9 @@ public class TrackingTask {
 	private String update_time;
 	private String platform;
 	private float inference_time_second;
+	private float head_angle_avg_error;
+	private float long_v_avg_error;
+	private float lat_v_avg_error;
 	
 	public int getId() {
 		return id;
@@ -185,6 +188,30 @@ public class TrackingTask {
 
 	public void setInference_time_second(float inference_time_second) {
 		this.inference_time_second = inference_time_second;
+	}
+
+	public float getHead_angle_avg_error() {
+		return head_angle_avg_error;
+	}
+
+	public void setHead_angle_avg_error(float head_angle_avg_error) {
+		this.head_angle_avg_error = head_angle_avg_error;
+	}
+
+	public float getLong_v_avg_error() {
+		return long_v_avg_error;
+	}
+
+	public void setLong_v_avg_error(float long_v_avg_error) {
+		this.long_v_avg_error = long_v_avg_error;
+	}
+
+	public float getLat_v_avg_error() {
+		return lat_v_avg_error;
+	}
+
+	public void setLat_v_avg_error(float lat_v_avg_error) {
+		this.lat_v_avg_error = lat_v_avg_error;
 	}
 
 }

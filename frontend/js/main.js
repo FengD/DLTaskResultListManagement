@@ -187,6 +187,9 @@ const trackingOptions = {
         { headerName: 'MODALITIES', field: 'modalities', chartDataType: 'category', tooltipValueGetter: getCellValue, headerTooltip: 'lidar,camera,radar,lidar|camera,lidar|radar,lidar|camera|radar'},
         { headerName: 'MOTA', field: 'mota'},
         { headerName: 'MOTP', field: 'motp'},
+        { headerName: 'HEAD_ANGLE_AVG_ERROR', field: 'head_angle_avg_error', editable: true, cellEditor: 'agTextCellEditor'},
+        { headerName: 'LONG_V_AVG_ERROR', field: 'long_v_avg_error', editable: true, cellEditor: 'agTextCellEditor'},
+        { headerName: 'LAT_V_AVG_ERROR', field: 'lat_v_avg_error', editable: true, cellEditor: 'agTextCellEditor'},
         { headerName: 'AMOTA', field: 'amota', columnGroupShow: 'open'},
         { headerName: 'AMOTP', field: 'amotp', columnGroupShow: 'open'},
         { headerName: 'MOTAR', field: 'motar', columnGroupShow: 'open'},
@@ -251,6 +254,18 @@ const trackingOptions = {
     if (event.column.colId == "description") {
       if (event.newValue != event.oldValue) {
         putTaskDesciption("TrackingTask", event.data.id, event.newValue);
+      }
+    } else if (event.column.colId == "head_angle_avg_error") {
+      if (event.newValue != event.oldValue) {
+        putTaskHeadAngle("TrackingTask", event.data.id, event.newValue);
+      }
+    } else if (event.column.colId == "long_v_avg_error") {
+      if (event.newValue != event.oldValue) {
+        putTaskVx("TrackingTask", event.data.id, event.newValue);
+      }
+    } else if (event.column.colId == "lat_v_avg_error") {
+      if (event.newValue != event.oldValue) {
+        putTaskVy("TrackingTask", event.data.id, event.newValue);
       }
     }
   }

@@ -71,12 +71,16 @@ public class TrackingTaskController {
 			@RequestParam float motp, @RequestParam(required = false, defaultValue = "") String result_details_url,
 			@RequestParam String state_report_url, @RequestParam int nb_object_class,
 			@RequestParam(required = false, defaultValue = "") String platform,
-			@RequestParam(required = false, defaultValue = "0") float inference_time_second) {
+			@RequestParam(required = false, defaultValue = "0") float inference_time_second,
+			@RequestParam(required = false, defaultValue = "0") float head_angle_avg_error,
+			@RequestParam(required = false, defaultValue = "0") float long_v_avg_error,
+			@RequestParam(required = false, defaultValue = "0") float lat_v_avg_error) {
 		Response response;
 		try {
 			response = new Response(service.insert(name, authors, description, test_dataset_url, model_files_url,
 					pico_results_url, modalities, amota, amotp, motar, mota, motp, result_details_url, state_report_url,
-					nb_object_class, platform, inference_time_second), HttpStatus.OK);
+					nb_object_class, platform, inference_time_second, head_angle_avg_error, long_v_avg_error,
+					lat_v_avg_error), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			response = new Response(null, HttpStatus.FOUND);
@@ -103,6 +107,45 @@ public class TrackingTaskController {
 		Response response;
 		try {
 			response = new Response(service.updateById(id, description), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response = new Response(null, HttpStatus.NOT_FOUND);
+		}
+		return response.getResponse();
+	}
+
+	@PutMapping("head_angle_avg_error/{id}")
+	@ApiOperation(value = "TrackingTask", notes = "update Head Angle Average Error description by id")
+	public Object updateHeadAngleById(@PathVariable int id, float head_angle_avg_error) {
+		Response response;
+		try {
+			response = new Response(service.updateHeadAngleById(id, head_angle_avg_error), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response = new Response(null, HttpStatus.NOT_FOUND);
+		}
+		return response.getResponse();
+	}
+
+	@PutMapping("long_v_avg_error/{id}")
+	@ApiOperation(value = "TrackingTask", notes = "update Long V Average Error description by id")
+	public Object updateVXById(@PathVariable int id, float long_v_avg_error) {
+		Response response;
+		try {
+			response = new Response(service.updateVXById(id, long_v_avg_error), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response = new Response(null, HttpStatus.NOT_FOUND);
+		}
+		return response.getResponse();
+	}
+
+	@PutMapping("lat_v_avg_error/{id}")
+	@ApiOperation(value = "TrackingTask", notes = "update Lat V Average Error  description by id")
+	public Object updateVYById(@PathVariable int id, float lat_v_avg_error) {
+		Response response;
+		try {
+			response = new Response(service.updateVYById(id, lat_v_avg_error), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			response = new Response(null, HttpStatus.NOT_FOUND);

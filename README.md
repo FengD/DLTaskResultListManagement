@@ -6,4 +6,6 @@
 * The backend use springboot with api doc by swagger-ui.
 * The frontend use jquery with ad-grid which is a good grid table and chat render component.
 
+![demo](demo.gif)
+
 ![demo](demo.png)
